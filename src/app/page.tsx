@@ -1,10 +1,11 @@
-import ScrollingCar from "@/components/ScrollingCar";
+import ScrollProgressLine from "@/components/ScrollingCar";
+// import ScrollingCar from "@/components/ScrollingCar";
 import ScrollLockSection from "@/components/ScrollLockSection";
 
 export default function Home() {
   return (
     <div className="relative">
-      <ScrollingCar />
+      <ScrollProgressLine />
 
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-purple-900 text-white">
@@ -17,6 +18,37 @@ export default function Home() {
           <button className="bg-white text-blue-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
             View My Work
           </button>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="max-w-4xl px-8 text-center">
+          <h2 className="text-5xl font-bold mb-8 text-gray-800">About Me</h2>
+          <p className="text-lg text-gray-600 mb-8">
+            I'm a passionate software developer specializing in modern web
+            technologies. With expertise in React, Next.js, and the MERN stack,
+            I build scalable applications that deliver exceptional user
+            experiences.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="p-6 bg-white rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-4">Frontend</h3>
+              <p className="text-gray-600">
+                React, Next.js, TypeScript, Tailwind CSS
+              </p>
+            </div>
+            <div className="p-6 bg-white rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-4">Backend</h3>
+              <p className="text-gray-600">
+                Node.js, Express, MongoDB, PostgreSQL
+              </p>
+            </div>
+            <div className="p-6 bg-white rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-4">Tools</h3>
+              <p className="text-gray-600">Git, Docker, AWS, Vercel</p>
+            </div>
+          </div>
         </div>
       </section>
 
