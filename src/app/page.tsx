@@ -17,7 +17,7 @@ export default function Home() {
         <div className="max-w-4xl px-8 text-center">
           <h2 className="text-5xl font-bold mb-8 text-gray-800">About Me</h2>
           <p className="text-lg text-gray-600 mb-8">
-            I'm a passionate software developer specializing in modern web
+            I am a passionate software developer specializing in modern web
             technologies. With expertise in React, Next.js, and the MERN stack,
             I build scalable applications that deliver exceptional user
             experiences.
