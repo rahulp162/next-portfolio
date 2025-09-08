@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "motion/react";
 // import HighlightSection from "./HighlightSection";
 
@@ -49,11 +49,24 @@ const HighlightSection = ({
 }: {
   scrollYProgress: MotionValue<number>;
 }) => {
+  // State to track if the component is running in the browser
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    // This code runs only in the browser
+    setIsClient(true);
+  }, []);
+
   // Animate the highlight in the second half of the scroll
   const scaleX = useTransform(scrollYProgress, [0.1, 1], [0.1, 1.9]);
-  const text = `I build ${
-    window.innerWidth < 600 ? "cool" : "Coooooooooooooooooool"
-  } stuff`;
+
+  // Conditionally determine the text based on window width
+  const text = isClient
+    ? `I build ${
+        window.innerWidth < 600 ? "cool" : "Coooooooooooooooooool"
+      } stuff`
+    : "I build stuff"; // Fallback text for server-side rendering
+
   const wave1Progress = useTransform(scrollYProgress, [0.35, 2], [0, 2]);
   const wave2Progress = useTransform(scrollYProgress, [0.35, 1.8], [0, 2]);
   const sparkleOpacity = useTransform(
@@ -131,15 +144,6 @@ const HighlightSection = ({
             <stop offset="50%" stopColor="#feca57" />
             <stop offset="100%" stopColor="#ff9ff3" />
           </linearGradient>
-          {/* <linearGradient
-            id="sparkleGradient"
-            style={{
-              scale: sparkleScale,
-            }}
-          >
-            <stop offset="0%" stopColor="#ffffff" />
-            <stop offset="100%" stopColor="#fbbf24" />
-          </linearGradient> */}
           <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#a8e6cf" />
             <stop offset="50%" stopColor="#ff8b94" />
@@ -159,9 +163,9 @@ const HighlightSection = ({
           <p
             className="font-bold text-black-500 relative z-20 leading-tight uppercase flex justify-start"
             style={{
-              marginLeft: window.innerWidth < 600 ? "30px" : "",
-              fontSize: window.innerWidth < 600 ? "1.1em" : "4em",
-              width: window.innerWidth < 600 ? "54vw" : "200vw",
+              marginLeft: isClient && window.innerWidth < 600 ? "30px" : "",
+              fontSize: isClient && window.innerWidth < 600 ? "1.1em" : "4em",
+              width: isClient && window.innerWidth < 600 ? "54vw" : "200vw",
             }}
           >
             {text}
