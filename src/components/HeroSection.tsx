@@ -1,13 +1,27 @@
 "use client";
 import { motion } from "motion/react";
+import Threads from "./Threads";
+import Aurora from "@/aurora/Aurora";
+import Shuffle from "@/shuffle/Shuffle";
 
 export default function HeroSection() {
-  const title = "I am a Software developer";
+  const title = "Hi! I am rahul";
   const subtitle =
     "Crafting exceptional web experiences with React, Next.js & MERN Stack";
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-black text-white overflow-hidden">
+      <Aurora
+
+  colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
+
+  blend={0.5}
+
+  amplitude={1.0}
+
+  speed={0.5}
+
+/>
       {/* Background Aurora Effect */}
       {/* <div className="absolute top-0 left-0 w-full h-full z-0">
         <div className="absolute top-[0%] left-[10%] w-[40rem] h-[40rem] bg-purple-600/20 rounded-full filter blur-3xl animate-blob"></div>
@@ -22,7 +36,32 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
         >
-          {title}
+          <Shuffle
+
+  text={title}
+
+  shuffleDirection="right"
+
+  duration={1}
+
+  animationMode="evenodd"
+
+  shuffleTimes={2}
+
+  ease="power3.out"
+
+  stagger={1}
+
+  threshold={0.1}
+  loop={true}
+
+  triggerOnce={false}
+
+  triggerOnHover={true}
+
+  respectReducedMotion={true}
+
+/>
         </motion.h1>
         <motion.p
           className="text-lg md:text-xl mb-8 text-gray-300"
@@ -51,8 +90,7 @@ export default function HeroSection() {
           backgroundSize: "2rem 2rem",
         }}
       ></div> */}
-      <div className="absolute top-0 left-0 w-full h-full z-0 bg-black">
-        {/* Top Fade Grid Background */}
+      {/* <div className="absolute top-0 left-0 w-full h-full z-0 bg-black">
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -67,7 +105,21 @@ export default function HeroSection() {
               "radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%)",
           }}
         />
-      </div>
+      </div> */}
+      {/* <div style={{ width: '100%', height: '600px', position: 'absolute' }}>
+
+  <Threads
+
+    amplitude={1}
+
+    distance={0}
+
+    enableMouseInteraction={true}
+
+  />
+
+</div> */}
+
     </section>
   );
 }

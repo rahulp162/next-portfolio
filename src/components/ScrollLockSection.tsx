@@ -78,7 +78,7 @@ const HighlightSection = ({
 
   return (
     <>
-      <svg
+     { <svg
         className="absolute inset-0 w-[250vw] h-full z-15"
         viewBox="0 0 2000 1000"
         preserveAspectRatio="xMidYMid slice"
@@ -97,7 +97,7 @@ const HighlightSection = ({
             filter: "drop-shadow(0 0 15px rgba(255,255,255,0.6))",
           }}
         />
-      </svg>
+      </svg>}
       <svg
         className="absolute inset-0 w-[250vw] h-full z-15"
         viewBox="0 0 2000 1000"
