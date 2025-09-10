@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "motion/react";
+import Shuffle from "@/shuffle/Shuffle";
 // import HighlightSection from "./HighlightSection";
 
 const MissionText = () => {
@@ -65,7 +66,7 @@ const HighlightSection = ({
     ? `I build ${
         window.innerWidth < 600 ? "cool" : "Coooooooooooooooooool"
       } stuff`
-    : "I build stuff"; // Fallback text for server-side rendering
+    : "I build cool stuff"; // Fallback text for server-side rendering
 
   const wave1Progress = useTransform(scrollYProgress, [0.35, 2], [0, 2]);
   const wave2Progress = useTransform(scrollYProgress, [0.35, 1.8], [0, 2]);
@@ -160,7 +161,7 @@ const HighlightSection = ({
           />
 
           {/* Text with mix-blend-mode for color inversion */}
-          <p
+          {/* <p
             className="font-bold text-black-500 relative z-20 leading-tight uppercase flex justify-start"
             style={{
               marginLeft: isClient && window.innerWidth < 600 ? "30px" : "",
@@ -168,8 +169,42 @@ const HighlightSection = ({
               width: isClient && window.innerWidth < 600 ? "54vw" : "200vw",
             }}
           >
+           {text}
+          </p> */}
+          <div 
+          className="font-bold text-black-500 relative z-20 leading-tight uppercase flex justify-start"
+            style={{
+              marginLeft: isClient && window.innerWidth < 600 ? "30px" : "",
+              fontSize: isClient && window.innerWidth < 600 ? "1.1em" : "4em",
+              width: isClient && window.innerWidth < 600 ? "54vw" : "200vw",
+            }}
+          >
             {text}
-          </p>
+
+           {/* <Shuffle
+            
+                        text={text}
+            
+                        shuffleDirection="right"
+            
+                        duration={1}
+            
+                        animationMode="random"
+            
+                        shuffleTimes={1}
+            
+                        ease="power3.out"
+            
+                        stagger={0.3}
+            
+                        threshold={0.9}
+              
+                       
+            
+                        respectReducedMotion={true}
+            
+                      /> */}
+          </div>
         </div>
       </div>
     </>

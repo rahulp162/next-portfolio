@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
+import { JSX } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText as GSAPSplitText } from 'gsap/SplitText';
 import { useGSAP } from '@gsap/react';
@@ -7,7 +8,33 @@ import './Shuffle.css';
 
 gsap.registerPlugin(ScrollTrigger, GSAPSplitText, useGSAP);
 
-const Shuffle = ({
+export interface ShuffleProps {
+  text: string;
+  className?: string;
+  style?: React.CSSProperties;
+  shuffleDirection?: 'left' | 'right';
+  duration?: number;
+  maxDelay?: number;
+  ease?: string | ((t: number) => number);
+  threshold?: number;
+  rootMargin?: string;
+  tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
+  textAlign?: React.CSSProperties['textAlign'];
+  onShuffleComplete?: () => void;
+  shuffleTimes?: number;
+  animationMode?: 'random' | 'evenodd';
+  loop?: boolean;
+  loopDelay?: number;
+  stagger?: number;
+  scrambleCharset?: string;
+  colorFrom?: string;
+  colorTo?: string;
+  triggerOnce?: boolean;
+  respectReducedMotion?: boolean;
+  triggerOnHover?: boolean;
+}
+
+const Shuffle: React.FC<ShuffleProps> = ({
   text,
   className = '',
   style = {},
@@ -32,15 +59,15 @@ const Shuffle = ({
   respectReducedMotion = true,
   triggerOnHover = true
 }) => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement>(null);
   const [fontsLoaded, setFontsLoaded] = useState(false);
   const [ready, setReady] = useState(false);
 
-  const splitRef = useRef(null);
-  const wrappersRef = useRef([]);
-  const tlRef = useRef(null);
+  const splitRef = useRef<GSAPSplitText | null>(null);
+  const wrappersRef = useRef<HTMLElement[]>([]);
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
   const playingRef = useRef(false);
-  const hoverHandlerRef = useRef(null);
+  const hoverHandlerRef = useRef<((e: Event) => void) | null>(null);
 
   useEffect(() => {
     if ('fonts' in document) {
@@ -57,7 +84,7 @@ const Shuffle = ({
         return;
       }
 
-      const el = ref.current;
+      const el = ref.current as HTMLElement;
 
       const startPct = (1 - threshold) * 100;
       const mm = /^(-?\d+(?:\.\d+)?)(px|em|rem|%)?$/.exec(rootMargin || '');
@@ -80,17 +107,15 @@ const Shuffle = ({
         }
         if (wrappersRef.current.length) {
           wrappersRef.current.forEach(wrap => {
-            const inner = wrap.firstElementChild;
-            const orig = inner?.querySelector('[data-orig="1"]');
+            const inner = wrap.firstElementChild as HTMLElement | null;
+            const orig = inner?.querySelector('[data-orig="1"]') as HTMLElement | null;
             if (orig && wrap.parentNode) wrap.parentNode.replaceChild(orig, wrap);
           });
           wrappersRef.current = [];
         }
         try {
           splitRef.current?.revert();
-        } catch {
-          /* noop */
-        }
+        } catch {}
         splitRef.current = null;
         playingRef.current = false;
       };
@@ -107,11 +132,11 @@ const Shuffle = ({
           reduceWhiteSpace: false
         });
 
-        const chars = splitRef.current.chars || [];
+        const chars = (splitRef.current.chars || []) as HTMLElement[];
         wrappersRef.current = [];
 
         const rolls = Math.max(1, Math.floor(shuffleTimes));
-        const rand = set => set.charAt(Math.floor(Math.random() * set.length)) || '';
+        const rand = (set: string) => set.charAt(Math.floor(Math.random() * set.length)) || '';
 
         chars.forEach(ch => {
           const parent = ch.parentElement;
@@ -138,7 +163,7 @@ const Shuffle = ({
           parent.insertBefore(wrap, ch);
           wrap.appendChild(inner);
 
-          const firstOrig = ch.cloneNode(true);
+          const firstOrig = ch.cloneNode(true) as HTMLElement;
           Object.assign(firstOrig.style, { display: 'inline-block', width: w + 'px', textAlign: 'center' });
 
           ch.setAttribute('data-orig', '1');
@@ -146,20 +171,19 @@ const Shuffle = ({
 
           inner.appendChild(firstOrig);
           for (let k = 0; k < rolls; k++) {
-            const c = ch.cloneNode(true);
+            const c = ch.cloneNode(true) as HTMLElement;
             if (scrambleCharset) c.textContent = rand(scrambleCharset);
             Object.assign(c.style, { display: 'inline-block', width: w + 'px', textAlign: 'center' });
             inner.appendChild(c);
           }
           inner.appendChild(ch);
 
-          // compute travel based on direction; also reorder children for left so motion reveals correctly
           const steps = rolls + 1;
           let startX = 0;
-          let finalX = -steps * w; // default: slide left to reveal
+          let finalX = -steps * w;
           if (shuffleDirection === 'right') {
-            const firstCopy = inner.firstElementChild;
-            const real = inner.lastElementChild;
+            const firstCopy = inner.firstElementChild as HTMLElement | null;
+            const real = inner.lastElementChild as HTMLElement | null;
             if (real) inner.insertBefore(real, inner.firstChild);
             if (firstCopy) inner.appendChild(firstCopy);
             startX = -steps * w;
@@ -167,7 +191,7 @@ const Shuffle = ({
           }
 
           gsap.set(inner, { x: startX, force3D: true });
-          if (colorFrom) inner.style.color = colorFrom;
+          if (colorFrom) (inner.style as any).color = colorFrom;
 
           inner.setAttribute('data-final-x', String(finalX));
           inner.setAttribute('data-start-x', String(startX));
@@ -176,14 +200,14 @@ const Shuffle = ({
         });
       };
 
-      const inners = () => wrappersRef.current.map(w => w.firstElementChild);
+      const inners = () => wrappersRef.current.map(w => w.firstElementChild as HTMLElement);
 
       const randomizeScrambles = () => {
         if (!scrambleCharset) return;
         wrappersRef.current.forEach(w => {
-          const strip = w.firstElementChild;
+          const strip = w.firstElementChild as HTMLElement;
           if (!strip) return;
-          const kids = Array.from(strip.children);
+          const kids = Array.from(strip.children) as HTMLElement[];
           for (let i = 1; i < kids.length - 1; i++) {
             kids[i].textContent = scrambleCharset.charAt(Math.floor(Math.random() * scrambleCharset.length));
           }
@@ -192,9 +216,9 @@ const Shuffle = ({
 
       const cleanupToStill = () => {
         wrappersRef.current.forEach(w => {
-          const strip = w.firstElementChild;
+          const strip = w.firstElementChild as HTMLElement;
           if (!strip) return;
-          const real = strip.querySelector('[data-orig="1"]');
+          const real = strip.querySelector('[data-orig="1"]') as HTMLElement | null;
           if (!real) return;
           strip.replaceChildren(real);
           strip.style.transform = 'none';
@@ -214,7 +238,7 @@ const Shuffle = ({
           repeatDelay: loop ? loopDelay : 0,
           onRepeat: () => {
             if (scrambleCharset) randomizeScrambles();
-            gsap.set(strips, { x: (i, t) => parseFloat(t.getAttribute('data-start-x') || '0') });
+            gsap.set(strips, { x: (i, t: HTMLElement) => parseFloat(t.getAttribute('data-start-x') || '0') });
             onShuffleComplete?.();
           },
           onComplete: () => {
@@ -228,11 +252,11 @@ const Shuffle = ({
           }
         });
 
-        const addTween = (targets, at) => {
+        const addTween = (targets: HTMLElement[], at: number) => {
           tl.to(
             targets,
             {
-              x: (i, t) => parseFloat(t.getAttribute('data-final-x') || '0'),
+              x: (i, t: HTMLElement) => parseFloat(t.getAttribute('data-final-x') || '0'),
               duration,
               ease,
               force3D: true,
@@ -333,10 +357,10 @@ const Shuffle = ({
     }
   );
 
-  const commonStyle = { textAlign, ...style };
+  const commonStyle: React.CSSProperties = { textAlign, ...style };
   const classes = `shuffle-parent ${ready ? 'is-ready' : ''} ${className}`;
-  const Tag = tag || 'p';
-  return React.createElement(Tag, { ref, className: classes, style: commonStyle }, text);
+  const Tag = (tag || 'p') as keyof JSX.IntrinsicElements;
+  return React.createElement((Tag).toString(), { ref: ref as any, className: classes, style: commonStyle }, text);
 };
 
 export default Shuffle;

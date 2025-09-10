@@ -13,15 +13,15 @@ export default function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center bg-black text-white overflow-hidden">
       <Aurora
 
-  colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
+        colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
 
-  blend={0.5}
+        blend={0.5}
 
-  amplitude={1.0}
+        amplitude={1.0}
 
-  speed={0.5}
+        speed={0.5}
 
-/>
+      />
       {/* Background Aurora Effect */}
       {/* <div className="absolute top-0 left-0 w-full h-full z-0">
         <div className="absolute top-[0%] left-[10%] w-[40rem] h-[40rem] bg-purple-600/20 rounded-full filter blur-3xl animate-blob"></div>
@@ -38,30 +38,29 @@ export default function HeroSection() {
         >
           <Shuffle
 
-  text={title}
+            text={title}
 
-  shuffleDirection="right"
+            shuffleDirection="right"
 
-  duration={1}
+            duration={1}
 
-  animationMode="evenodd"
+            animationMode="evenodd"
 
-  shuffleTimes={2}
+            shuffleTimes={2}
 
-  ease="power3.out"
+            ease="power3.out"
 
-  stagger={1}
+            stagger={1}
 
-  threshold={0.1}
-  loop={true}
+            threshold={0.1}
+            loop={true}
 
-  triggerOnce={false}
+            triggerOnce={false}
 
-  triggerOnHover={true}
+            triggerOnHover={true}
 
-  respectReducedMotion={true}
-
-/>
+            respectReducedMotion={true}
+          />
         </motion.h1>
         <motion.p
           className="text-lg md:text-xl mb-8 text-gray-300"
