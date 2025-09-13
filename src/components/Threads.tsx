@@ -1,7 +1,14 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Renderer, Program, Mesh, Triangle, Color } from 'ogl';
 
 // import './Threads.css';
+
+interface ThreadsProps {
+  color?: [number, number, number];
+  amplitude?: number;
+  distance?: number;
+  enableMouseInteraction?: boolean;
+}
 
 const vertexShader = `
 attribute vec2 position;
@@ -120,9 +127,15 @@ void main() {
 }
 `;
 
-const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseInteraction = false, ...rest }) => {
-  const containerRef = useRef(null);
-  const animationFrameId = useRef(null);
+const Threads: React.FC<ThreadsProps> = ({
+  color = [1, 1, 1],
+  amplitude = 1,
+  distance = 0,
+  enableMouseInteraction = false,
+  ...rest
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const animationFrameId = useRef<number>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -166,7 +179,7 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
     let currentMouse = [0.5, 0.5];
     let targetMouse = [0.5, 0.5];
 
-    function handleMouseMove(e) {
+    function handleMouseMove(e: MouseEvent) {
       const rect = container.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
       const y = 1.0 - (e.clientY - rect.top) / rect.height;
@@ -180,7 +193,7 @@ const Threads = ({ color = [1, 1, 1], amplitude = 1, distance = 0, enableMouseIn
       container.addEventListener('mouseleave', handleMouseLeave);
     }
 
-    function update(t) {
+    function update(t: number) {
       if (enableMouseInteraction) {
         const smoothing = 0.05;
         currentMouse[0] += smoothing * (targetMouse[0] - currentMouse[0]);
