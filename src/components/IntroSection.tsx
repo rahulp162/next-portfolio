@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "motion/react";
+import CurvedLoop from "./CurvedLoop";
 
 const IntroSection = () => {
   const name = "Rahul Panchal"; // Placeholder Name
@@ -9,7 +10,23 @@ const IntroSection = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-black text-white py-20">
+{/* <CurvedLoop
+
+                marqueeText="Be ✦ Creative ✦ With ✦ React ✦ Bits ✦"
+
+                speed={3}
+
+                curveAmount={1700}
+
+                direction="right"
+
+                interactive={true}
+
+                className="custom-text-style absolute  w-screen"
+
+              /> */}
       <div className="max-w-4xl mx-auto px-8 text-center">
+              
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -1,5 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import IntroSection from "@/components/IntroSection";
+import ProjectsSection from "@/components/ProjectsSection";
 import ScrollLockSection from "@/components/ScrollLockSection";
 import ScrollingCar from "@/components/ScrollingCar";
 
@@ -43,6 +44,7 @@ export default function Home() {
         </div>
       </section>
 
+<ProjectsSection/>
       {/* Projects Section */}
       <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-900 to-teal-900 text-white">
         <div className="max-w-6xl px-8">
