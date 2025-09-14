@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
 
 // Rounded Falling Columns Animation for Hero Section
 const FallingColumnsAnimation = () => {
@@ -10,29 +10,41 @@ const FallingColumnsAnimation = () => {
   // Then quickly animate to full height
   const column1Height = useTransform(
     scrollYProgress,
-    [0, 0.01, 0.16],
-    ["0vh", "0vh", "310vh"]
+    [0, 0.08, 0.16],
+    ["0vh", "0vh", "260vh"]
   );
   const column2Height = useTransform(
     scrollYProgress,
-    [0, 0.01, 0.18],
-    ["0vh", "0vh", "310vh"]
+    [0, 0.09, 0.18],
+    ["0vh", "0vh", "300vh"]
   );
   const column3Height = useTransform(
     scrollYProgress,
-    [0, 0.01, 0.2],
-    ["0vh", "0vh", "310vh"]
+    [0, 0.1, 0.2],
+    ["0vh", "0vh", "280vh"]
   );
   const column4Height = useTransform(
     scrollYProgress,
-    [0, 0.01, 0.22],
-    ["0vh", "0vh", "310vh"]
+    [0, 0.11, 0.22],
+    ["0vh", "0vh", "290vh"]
   );
 
   return (
     <div className="absolute inset-0 w-full h-[300vh] overflow-visible">
       {/* Column 1 - Blue */}
       <div className="absolute left-0 top-0 w-[25vw] flex justify-center">
+        {/* Grid overlay for texture */}
+        <div
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            backgroundImage: `
+        repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
+        repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
+        repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
+        repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
+      `,
+          }}
+        />
         <motion.div
           className="w-[20vw] rounded-[50px]"
           style={{
@@ -48,6 +60,17 @@ const FallingColumnsAnimation = () => {
 
       {/* Column 2 - Purple */}
       <div className="absolute left-[25vw] top-0 w-[25vw] flex justify-center">
+        <div
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            backgroundImage: `
+        repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
+        repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
+        repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
+        repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
+      `,
+          }}
+        />
         <motion.div
           className="w-[20vw] rounded-[50px]"
           style={{
@@ -63,6 +86,17 @@ const FallingColumnsAnimation = () => {
 
       {/* Column 3 - Pink */}
       <div className="absolute left-[50vw] top-0 w-[25vw] flex justify-center">
+        <div
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            backgroundImage: `
+        repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
+        repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
+        repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
+        repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
+      `,
+          }}
+        />
         <motion.div
           className="w-[20vw] rounded-[50px]"
           style={{
@@ -78,6 +112,17 @@ const FallingColumnsAnimation = () => {
 
       {/* Column 4 - Green */}
       <div className="absolute left-[75vw] top-0 w-[25vw] flex justify-center">
+        <div
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            backgroundImage: `
+        repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
+        repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
+        repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
+        repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
+      `,
+          }}
+        />
         <motion.div
           className="w-[20vw] rounded-[50px]"
           style={{
@@ -90,18 +135,6 @@ const FallingColumnsAnimation = () => {
           }}
         />
       </div>
-
-      {/* Grid overlay for texture */}
-      <div
-        className="absolute inset-0 z-5 opacity-10"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: "20px 20px",
-        }}
-      />
     </div>
   );
 };
@@ -110,19 +143,24 @@ const FallingColumnsAnimation = () => {
 const Skills = () => {
   return (
     <div className="flex flex-wrap justify-center gap-2 mt-6">
-      {["React", "Next.js", "TypeScript", "Node.js", "UI/UX", "MongoDB"].map(
-        (skill, i) => (
-          <motion.span
-            key={skill}
-            className="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 + i * 0.1, duration: 0.5 }}
-          >
-            {skill}
-          </motion.span>
-        )
-      )}
+      {[
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Framer Motion",
+        "MongoDB",
+      ].map((skill, i) => (
+        <motion.span
+          key={skill}
+          className="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 + i * 0.1, duration: 0.5 }}
+        >
+          {skill}
+        </motion.span>
+      ))}
     </div>
   );
 };
@@ -133,6 +171,17 @@ export default function HeroSection() {
   const scale = useTransform(scrollYProgress, [0, 0.01, 0.5], [1, 1, 0.8]);
   const opacity = useTransform(scrollYProgress, [0, 0.01, 0.7], [1, 1, 0]);
   const y = useTransform(scrollYProgress, [0, 0.01, 0.5], [0, 0, -30]);
+  // Use useMotionValue and useTransform to animate letterSpacing as a string with "px" unit
+  // import { useMotionValue, useTransform } from "framer-motion";
+  // ...
+  const letterSpacingRaw = useMotionValue(1);
+  const spacing = useTransform(letterSpacingRaw, (v) => `${v * 3}px`);
+  const spacing2 = useTransform(letterSpacingRaw, (v) => `${v * 20}px`);
+  const spacing3 = useTransform(letterSpacingRaw, (v) => `${v * 5}px`);
+  // Animate letterSpacingRaw based on scrollYProgress
+  useTransform(scrollYProgress, [0, 1], [1, 100]).onChange((v) =>
+    letterSpacingRaw.set(v)
+  );
 
   return (
     <section className="relative min-h-[310vh] bg-black text-white overflow-hidden">
@@ -142,12 +191,84 @@ export default function HeroSection() {
       {/* Content container - sticky to stay visible while scrolling */}
       <div className="sticky top-0 h-screen flex items-center justify-center">
         <motion.div
-          className="relative z-20 max-w-4xl mx-auto px-6 text-center pt-[400vh]"
+          className="relative z-20 max-w-4xl mx-auto px-6 text-center "
           style={{ scale, opacity, y }}
         >
           {/* Main heading with gradient */}
+          <motion.h2
+            className={`font-extrabold mb-4 ${
+              window.innerWidth < 600 ? "pt-[50vh]" : "pt-[180vh]"
+            }`}
+            style={{ letterSpacing: spacing2 }}
+          >
+            I AM
+          </motion.h2>
+          {/* <motion.div className="w-[80vw] h-[40vh] bg-red-500 mx-auto "></motion.div> */}
+          {/* <div className="flex justify-start flex-row"> */}
           <motion.h1
-            className="text-7xl md:text-8xl lg:text-9xl font-extrabold mb-4"
+            className="text-xl  m-0 md:text-8xl lg:text-9xl font-extrabold mb-4 "
+            style={{
+              // backgroundImage:
+              //   "linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899)",
+              // backgroundSize: "cover",
+              // backgroundClip: "text",
+              // WebkitBackgroundClip: "text",
+              // color: "transparent",
+              // backgroundColor: "white",
+              // backgroundBlendMode: "revert-layer",
+              letterSpacing: spacing,
+              // textShadow: "0 0 40px rgba(139, 92, 246, 0.3)",
+            }}
+            // initial={{ opacity: 0, y: 20 }}
+            // animate={{ opacity: 1, y: 1 }}
+            // transition={{ duration: 0.8, ease: "easeInOut" }}
+          >
+            RAHUL
+          </motion.h1>
+          <motion.h1
+            className="text-xl m-0 md:text-8xl lg:text-9xl font-extrabold mb-4 "
+            style={{
+              // backgroundImage:
+              //   "linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899)",
+              // backgroundSize: "cover",
+              // backgroundClip: "text",
+              // WebkitBackgroundClip: "text",
+              // color: "transparent",
+              // backgroundColor: "white",
+              // backgroundBlendMode: "revert-layer",
+              letterSpacing: spacing,
+              // textShadow: "0 0 40px rgba(139, 92, 246, 0.3)",
+            }}
+            // initial={{ opacity: 0, y: 20 }}
+            // animate={{ opacity: 1, y: 1 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          >
+            PANCHAL
+          </motion.h1>
+          {/* </div> */}
+          {/* <motion.h2 className="mt-[0vh]" style={{ letterSpacing: spacing2 }}>
+            A FULL STACK DEVELOPER
+          </motion.h2> */}
+          <motion.h2
+            className="mt-[0vh] transition-all duration-300 ease-out"
+            style={{
+              letterSpacing: spacing3,
+              lineHeight: useTransform(scrollYProgress, [0, 1], [1.2, 2]),
+              // width: "fit-content",
+              // maxWidth: "100vw",
+              wordBreak: "break-word",
+              hyphens: "none",
+            }}
+            layout
+            transition={{
+              layout: { duration: 0.3, ease: "easeOut" },
+            }}
+          >
+            A FULL STACK DEVELOPER
+          </motion.h2>
+          {/* {window.innerWidth < 600 && <div className="h-[60vh] "></div>} */}
+          <motion.h1
+            className="text-3xl mt-[20vh] md:text-6xl lg:text-8xl font-extrabold mb-4 w-full text-center "
             style={{
               // backgroundImage:
               //   "linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899)",
@@ -163,10 +284,10 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 1 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
           >
-            RAHUL PANCHAL
+            Engineer with a passion for creative web development
           </motion.h1>
 
-          {/* Profession with typing animation */}
+          {/* Profession with typing animation
           <motion.h2
             className="text-xl md:text-2xl font-light mb-6"
             initial={{ opacity: 0 }}
@@ -174,19 +295,89 @@ export default function HeroSection() {
             transition={{ delay: 0.5, duration: 0.8 }}
           >
             Full Stack Developer
-          </motion.h2>
+          </motion.h2> */}
 
           {/* Short bio */}
-          <motion.p
-            className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-6 backdrop-blur-sm bg-black/10 p-4 rounded-lg"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-          >
-            I build modern web applications with cutting-edge technologies,
-            focusing on performance, accessibility, and beautiful user
-            experiences.
-          </motion.p>
+          {(() => {
+            // The sentence to animate
+            const sentence =
+              "I build modern web applications with cutting-edge technologies, focusing on performance, accessibility, and beautiful user experiences.";
+
+            // Split sentence into words
+            const words = sentence.split(" ");
+
+            // Animate the reveal based on scrollYProgress
+            // Assume scrollYProgress is available in scope (0 to 1)
+            // We'll reveal the paragraph when scrollYProgress > 0.15, and animate height from 0 to auto
+            // We'll also slide up each word with a staggered effect
+
+            // Set the reveal start and end points
+            const revealStart = 0.15;
+            const revealEnd = 0.3;
+
+            // Map scrollYProgress to a value between 0 and 1 for the reveal
+            const revealProgress = useTransform(
+              scrollYProgress,
+              [revealStart, revealEnd],
+              [0, 1]
+            );
+
+            // Animate the container's height from 0 to "auto" (using maxHeight for smoothness)
+            const maxHeight = useTransform(
+              revealProgress,
+              [0, 1],
+              [0, 500] // 500px is a safe max for this paragraph
+            );
+
+            // Animate opacity of the container
+            const containerOpacity = useTransform(
+              revealProgress,
+              [0, 0.1, 1],
+              [0, 0.2, 1]
+            );
+
+            // For each word, animate its y and opacity with a stagger based on revealProgress
+            // We'll use a simple stagger: each word appears as revealProgress increases
+            return (
+              <motion.div
+                style={{
+                  overflow: "hidden",
+                  maxHeight,
+                  opacity: containerOpacity,
+                  transition: "max-height 0.4s cubic-bezier(0.4,0,0.2,1)",
+                }}
+                className="mb-6"
+              >
+                <p className="text-lg md:text-xl text-white max-w-2xl mx-auto backdrop-blur-sm bg-black/10 p-4 rounded-lg flex flex-wrap gap-x-1 gap-y-2">
+                  {words.map((word, i) => {
+                    // Each word's reveal point is staggered
+                    const wordStart = (i / words.length) * 0.7; // 0.7 so last words don't wait for 1
+                    const wordEnd = wordStart + 0.2; // Each word animates over 0.2 of the progress
+
+                    const wordProgress = useTransform(
+                      revealProgress,
+                      [wordStart, wordEnd],
+                      [0, 1]
+                    );
+
+                    return (
+                      <motion.span
+                        key={i}
+                        style={{
+                          display: "inline-block",
+                          opacity: wordProgress,
+                          y: useTransform(wordProgress, [0, 1], [20, 0]),
+                          transition: "opacity 0.3s, transform 0.3s",
+                        }}
+                      >
+                        {word}
+                      </motion.span>
+                    );
+                  })}
+                </p>
+              </motion.div>
+            );
+          })()}
 
           {/* Skills tags */}
           <Skills />
