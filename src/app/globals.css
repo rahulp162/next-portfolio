@@ -3,7 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --font-inter: "Inter", Arial, Helvetica, sans-serif;
+  --font-inter: "Canela-deck-reg","Inter", Arial, Helvetica, sans-serif;
   --font-fira-code: "Fira Code", "Courier New", monospace;
 }
 
@@ -19,6 +19,29 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+@font-face {
+    font-family: 'Canela-deck-reg-i';
+    src: url('/fonts/canela-deck-reg-i.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Canela-deck-reg-b';
+    src: url('/fonts/canela-deck-reg-i.otf') format('opentype');
+    font-weight:900;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Canela-deck-reg';
+    src: url('/fonts/canela-deck-reg.otf') format('opentype');
+    font-weight:900;
+    font-style: italic;
+    font-display: swap;
 }
 
 /* Load Inter and Fira Code from Google Fonts */
@@ -55,3 +78,14 @@ body {
   width: 100%;
   height: 100%;
 }
+/* .hero-container {
+  width: 70vw;
+  height: 60vh;
+}
+
+@media (max-width: 768px) {
+  .hero-container {
+    width: 70vw;
+    height: 30vh;
+  }
+} */
