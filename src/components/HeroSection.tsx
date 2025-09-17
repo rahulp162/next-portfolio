@@ -192,7 +192,7 @@ export default function HeroSection() {
 
       <div className="w-full flex justify-center">
         <div className="hero-container absolute top-30 w-[70vw] h-[65vh] rounded-lg justify-center ">
-          <Image src="/hero.png" alt="my work space" fill style={{ objectFit:window.innerWidth<600?"cover":"none",  objectPosition:"", borderRadius:"10px" }} />
+          <Image src="/hero.png" alt="my work space" fill style={{ objectFit:window?.innerWidth<600?"cover":"none",  objectPosition:"", borderRadius:"10px" }} />
         </div>
       </div>
 
