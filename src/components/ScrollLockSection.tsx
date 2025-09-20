@@ -135,21 +135,21 @@ const HighlightSection = ({
         />
         {/* Gradient definitions */}
         <defs>
-          <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#ff6b6b" />
-            <stop offset="50%" stopColor="#4ecdc4" />
-            <stop offset="100%" stopColor="#45b7d1" />
-          </linearGradient>
-          <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#96ceb4" />
-            <stop offset="50%" stopColor="#feca57" />
-            <stop offset="100%" stopColor="#ff9ff3" />
-          </linearGradient>
-          <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#a8e6cf" />
-            <stop offset="50%" stopColor="#ff8b94" />
-            <stop offset="100%" stopColor="#b4a7d6" />
-          </linearGradient>
+           <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#ff6b6b" />
+      <stop offset="50%" stopColor="#4ecdc4" />
+      <stop offset="100%" stopColor="#45b7d1" />
+    </linearGradient>
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#96ceb4" />
+      <stop offset="50%" stopColor="#feca57" />
+      <stop offset="100%" stopColor="#ff9ff3" />
+    </linearGradient>
+    <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#a8e6cf" />
+      <stop offset="50%" stopColor="#ff8b94" />
+      <stop offset="100%" stopColor="#b4a7d6" />
+    </linearGradient>
         </defs>
       </svg>
       <div className="w-[10vw] h-screen flex items-center justify-center bg-black text-white relative">

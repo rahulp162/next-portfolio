@@ -1,6 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 
 // Rounded Falling Columns Animation for Hero Section
 const FallingColumnsAnimation = () => {
@@ -31,111 +32,111 @@ const FallingColumnsAnimation = () => {
 
   return (
     <div className="absolute inset-0 w-full h-[300vh] overflow-visible">
-      {/* Column 1 - Blue */}
-      <div className="absolute left-0 top-0 w-[25vw] flex justify-center">
-        {/* Grid overlay for texture */}
-        <div
-          className="absolute inset-0 z-0 pointer-events-none"
-          style={{
-            backgroundImage: `
-        repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
-      `,
-          }}
-        />
-        <motion.div
-          className="w-[20vw] rounded-[50px]"
-          style={{
-            height: column1Height,
-            background:
-              "linear-gradient(to bottom, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.7), rgba(99, 102, 241, 0.9))",
-            borderTopLeftRadius: "100px",
-            borderTopRightRadius: "100px",
-            boxShadow: "0 0 20px rgba(59, 130, 246, 0.3)",
-          }}
-        />
-      </div>
+  {/* Column 1 - Dark Background/Shadows */}
+  <div className="absolute left-0 top-0 w-[25vw] flex justify-center">
+    {/* Grid overlay for texture */}
+    <div
+      className="absolute inset-0 z-0 pointer-events-none"
+      style={{
+        backgroundImage: `
+          repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
+          repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
+          repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
+          repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
+        `,
+      }}
+    />
+    <motion.div
+      className="w-[20vw] rounded-[50px]"
+      style={{
+        height: column1Height,
+        background:
+          "linear-gradient(to bottom, #1D232C, rgba(29, 35, 44, 0.7), rgba(29, 35, 44, 0.9))",
+        borderTopLeftRadius: "100px",
+        borderTopRightRadius: "100px",
+        boxShadow: "0 0 20px rgba(29, 35, 44, 0.3)",
+      }}
+    />
+  </div>
 
-      {/* Column 2 - Purple */}
-      <div className="absolute left-[25vw] top-0 w-[25vw] flex justify-center">
-        <div
-          className="absolute inset-0 z-0 pointer-events-none"
-          style={{
-            backgroundImage: `
-        repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
-      `,
-          }}
-        />
-        <motion.div
-          className="w-[20vw] rounded-[50px]"
-          style={{
-            height: column2Height,
-            background:
-              "linear-gradient(to bottom, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.7), rgba(167, 139, 250, 0.9))",
-            borderTopLeftRadius: "100px",
-            borderTopRightRadius: "100px",
-            boxShadow: "0 0 20px rgba(139, 92, 246, 0.3)",
-          }}
-        />
-      </div>
+  {/* Column 2 - Warm Brown */}
+  <div className="absolute left-[25vw] top-0 w-[25vw] flex justify-center">
+    <div
+      className="absolute inset-0 z-0 pointer-events-none"
+      style={{
+        backgroundImage: `
+          repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
+          repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
+          repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
+          repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
+        `,
+      }}
+    />
+    <motion.div
+      className="w-[20vw] rounded-[50px]"
+      style={{
+        height: column2Height,
+        background:
+          "linear-gradient(to bottom, #6B442A, rgba(107, 68, 42, 0.7), rgba(107, 68, 42, 0.9))",
+        borderTopLeftRadius: "100px",
+        borderTopRightRadius: "100px",
+        boxShadow: "0 0 20px rgba(107, 68, 42, 0.3)",
+      }}
+    />
+  </div>
 
-      {/* Column 3 - Pink */}
-      <div className="absolute left-[50vw] top-0 w-[25vw] flex justify-center">
-        <div
-          className="absolute inset-0 z-0 pointer-events-none"
-          style={{
-            backgroundImage: `
-        repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
-      `,
-          }}
-        />
-        <motion.div
-          className="w-[20vw] rounded-[50px]"
-          style={{
-            height: column3Height,
-            background:
-              "linear-gradient(to bottom, rgba(236, 72, 153, 0.1), rgba(236, 72, 153, 0.7), rgba(244, 114, 182, 0.9))",
-            borderTopLeftRadius: "100px",
-            borderTopRightRadius: "100px",
-            boxShadow: "0 0 20px rgba(236, 72, 153, 0.3)",
-          }}
-        />
-      </div>
+  {/* Column 3 - Muted Green */}
+  <div className="absolute left-[50vw] top-0 w-[25vw] flex justify-center">
+    <div
+      className="absolute inset-0 z-0 pointer-events-none"
+      style={{
+        backgroundImage: `
+          repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
+          repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
+          repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
+          repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
+        `,
+      }}
+    />
+    <motion.div
+      className="w-[20vw] rounded-[50px]"
+      style={{
+        height: column3Height,
+        background:
+          "linear-gradient(to bottom, #A5B67B, rgba(165, 182, 123, 0.7), rgba(165, 182, 123, 0.9))",
+        borderTopLeftRadius: "100px",
+        borderTopRightRadius: "100px",
+        boxShadow: "0 0 20px rgba(165, 182, 123, 0.3)",
+      }}
+    />
+  </div>
 
-      {/* Column 4 - Green */}
-      <div className="absolute left-[75vw] top-0 w-[25vw] flex justify-center">
-        <div
-          className="absolute inset-0 z-0 pointer-events-none"
-          style={{
-            backgroundImage: `
-        repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
-      `,
-          }}
-        />
-        <motion.div
-          className="w-[20vw] rounded-[50px]"
-          style={{
-            height: column4Height,
-            background:
-              "linear-gradient(to bottom, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.7), rgba(52, 211, 153, 0.9))",
-            borderTopLeftRadius: "100px",
-            borderTopRightRadius: "100px",
-            boxShadow: "0 0 20px rgba(16, 185, 129, 0.3)",
-          }}
-        />
-      </div>
-    </div>
+  {/* Column 4 - Orange/Yellow */}
+  <div className="absolute left-[75vw] top-0 w-[25vw] flex justify-center">
+    <div
+      className="absolute inset-0 z-0 pointer-events-none"
+      style={{
+        backgroundImage: `
+          repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
+          repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
+          repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
+          repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
+        `,
+      }}
+    />
+    <motion.div
+      className="w-[20vw] rounded-[50px]"
+      style={{
+        height: column4Height,
+        background:
+          "linear-gradient(to bottom, #D59B55, rgba(213, 155, 85, 0.7), rgba(213, 155, 85, 0.9))",
+        borderTopLeftRadius: "100px",
+        borderTopRightRadius: "100px",
+        boxShadow: "0 0 20px rgba(213, 155, 85, 0.3)",
+      }}
+    />
+  </div>
+</div>
   );
 };
 
@@ -175,9 +176,9 @@ export default function HeroSection() {
   // import { useMotionValue, useTransform } from "framer-motion";
   // ...
   const letterSpacingRaw = useMotionValue(1);
-  const spacing = useTransform(letterSpacingRaw, (v) => `${v * 3}px`);
-  const spacing2 = useTransform(letterSpacingRaw, (v) => `${v * 20}px`);
-  const spacing3 = useTransform(letterSpacingRaw, (v) => `${v * 5}px`);
+  const spacing = useTransform(letterSpacingRaw, (v) => `${v * 2.8}px`);
+  const spacing2 = useTransform(letterSpacingRaw, (v) => `${v * 10}px`);
+  const spacing3 = useTransform(letterSpacingRaw, (v) => `${v * 1.9}px`);
   // Animate letterSpacingRaw based on scrollYProgress
   useTransform(scrollYProgress, [0, 1], [1, 100]).onChange((v) =>
     letterSpacingRaw.set(v)
@@ -185,8 +186,15 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-[310vh] bg-black text-white overflow-hidden">
+      
       {/* Simple Falling Columns Animation */}
       <FallingColumnsAnimation />
+
+      <div className="w-full flex justify-center">
+        <div className="hero-container absolute top-30 w-[70vw] h-[65vh] rounded-lg justify-center ">
+          <Image src="/hero.png" alt="my work space" fill style={{ objectFit:window?.innerWidth<600?"cover":"none",  objectPosition:"", borderRadius:"10px" }} />
+        </div>
+      </div>
 
       {/* Content container - sticky to stay visible while scrolling */}
       <div className="sticky top-0 h-screen flex items-center justify-center">
@@ -250,7 +258,7 @@ export default function HeroSection() {
             A FULL STACK DEVELOPER
           </motion.h2> */}
           <motion.h2
-            className="mt-[0vh] transition-all duration-300 ease-out"
+            className="mt-[0vh] transition-all duration-300 ease-out " 
             style={{
               letterSpacing: spacing3,
               lineHeight: useTransform(scrollYProgress, [0, 1], [1.2, 2]),
@@ -319,14 +327,14 @@ export default function HeroSection() {
             const revealProgress = useTransform(
               scrollYProgress,
               [revealStart, revealEnd],
-              [0, 1]
+              [0, 7]
             );
 
             // Animate the container's height from 0 to "auto" (using maxHeight for smoothness)
             const maxHeight = useTransform(
               revealProgress,
               [0, 1],
-              [0, 500] // 500px is a safe max for this paragraph
+              [0, 200] // 500px is a safe max for this paragraph
             );
 
             // Animate opacity of the container
