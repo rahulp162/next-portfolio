@@ -550,7 +550,7 @@ export function SmoothCursor({
 
   if (disabled || !isVisible) return null;
 
-  console.log("Rendering cursor with inverted color:", currentColor);
+  //   console.log("Rendering cursor with inverted color:", currentColor);
 
   return (
     <>

@@ -5,8 +5,24 @@ import SmoothCursor from "./SmoothCursor";
 import ScrollReveal from "./ScrollReveal";
 import ScrollFloat from "./ScrollReveal";
 import ScrollVelocity from "./ScrollVelocity";
+import { useState } from "react";
+import {
+  ArrowBigLeft,
+  ArrowBigLeftDash,
+  ArrowDown01Icon,
+  ArrowRight,
+  ArrowUp10Icon,
+  SendHorizonalIcon,
+  SendHorizontal,
+  TextCursor,
+  TextCursorInput,
+} from "lucide-react";
 
 const IntroSection = () => {
+  const [cursorStatus, setCursorStatus] = useState(true);
+  const toggleCustomCursor = () => {
+    setCursorStatus(!cursorStatus);
+  };
   const name = "Rahul Panchal"; // Placeholder Name
   const role = "Jr. Software Developer";
   const provision =
@@ -30,19 +46,31 @@ const IntroSection = () => {
 
               /> */}
       <div className="max-w-4xl mx-auto px-8 text-center">
-        <SmoothCursor
-          size={25}
-          // color="white"
-          showTrail={false}
-          magneticDistance={60}
-          magneticElements="[data-magnetic]"
-          springConfig={{
-            damping: 90,
-            stiffness: 450,
-            mass: 0.9,
-            restDelta: 0.001,
-          }}
-        />
+        <button
+          className="fixed top-10 cursor-pointer rotate-[-90deg] p-1 z-999 rounded-full right-10 bg-black text-white"
+          onClick={toggleCustomCursor}
+        >
+          {cursorStatus ? (
+            <ArrowRight size={15} />
+          ) : (
+            <SendHorizontal size={15} />
+          )}
+        </button>
+        {cursorStatus && (
+          <SmoothCursor
+            size={25}
+            // color="white"
+            showTrail={false}
+            magneticDistance={60}
+            magneticElements="[data-magnetic]"
+            springConfig={{
+              damping: 90,
+              stiffness: 450,
+              mass: 0.9,
+              restDelta: 0.001,
+            }}
+          />
+        )}
         <ScrollVelocity
           texts={[
             "React.js Next.js GSAP Framer ",
@@ -59,7 +87,7 @@ const IntroSection = () => {
           baseRotation={15}
           blurStrength={10}
         >
-          So..... what I actually do with these technologies?
+          So..... what I actually do with these Tools & Tech?
         </ScrollReveal>
       </div>
     </section>

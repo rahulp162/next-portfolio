@@ -29,9 +29,9 @@ const HighlightSection = ({
   );
   const sparkleScale = useTransform(scrollYProgress, [0.6, 0.7], [0.5, 1.2]);
 
-  const text = `I build ${
-    windowWidth < 600 ? "cool" : "Coooooooooooooooooool"
-  } stuff`;
+  const text = `I build ${windowWidth < 600 ? "cool" : "2222222222"} stuff`;
+
+  // console.log("WAVW1: ", wave1Progress);
 
   return (
     <div className="w-[10vw] h-screen flex items-center justify-center bg-black text-white relative overflow-hidden">

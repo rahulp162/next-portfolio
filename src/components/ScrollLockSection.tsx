@@ -79,26 +79,32 @@ const HighlightSection = ({
 
   return (
     <>
-     { <svg
-        className="absolute inset-0 w-[250vw] h-full z-15"
-        viewBox="0 0 2000 1000"
-        preserveAspectRatio="xMidYMid slice"
-        style={{ pointerEvents: "none", zIndex: 50 }}
-      >
-        {/* Second wavy line - much larger scale */}
-        <motion.path
-          d="M100,500 Q500,300 800,500 T1400,500 T1900,500"
-          stroke="url(#gradient2)"
-          strokeWidth="8"
-          fill="none"
-          strokeLinecap="round"
-          initial={{ pathLength: 0 }}
-          style={{
-            pathLength: wave2Progress,
-            filter: "drop-shadow(0 0 15px rgba(255,255,255,0.6))",
-          }}
-        />
-      </svg>}
+      {/* <p className="text-black z-9999 fixed top-2 left-10 bg-white border">
+        {String(wave1Progress)}
+      </p> */}
+      {
+        <svg
+          className="absolute inset-0 w-[250vw] h-full z-15"
+          viewBox="0 0 2000 1000"
+          preserveAspectRatio="xMidYMid slice"
+          style={{ pointerEvents: "none", zIndex: 50 }}
+        >
+          <motion.path
+            d="M100,500 Q500,300 800,500 T1400,500 T1900,500"
+            stroke="url(#gradient2)"
+            strokeWidth="20"
+            fill="none"
+            strokeLinecap="round"
+            initial={{ pathLength: 0 }}
+            style={{
+              pathLength: wave2Progress,
+              strokeDasharray: wave2Progress, // New: Makes the dash equal to the path length
+              strokeDashoffset: wave2Progress, // New: Initially offsets the dash to hide it
+              filter: "drop-shadow(0 0 15px rgba(255,255,255,0.6))",
+            }}
+          />
+        </svg>
+      }
       <svg
         className="absolute inset-0 w-[250vw] h-full z-15"
         viewBox="0 0 2000 1000"
@@ -109,7 +115,7 @@ const HighlightSection = ({
         <motion.path
           d="M100,400 Q400,200 700,400 T1300,400 T1900,400 T2500,400 T3100,400 T3700,400"
           stroke="url(#gradient1)"
-          strokeWidth="12"
+          strokeWidth="42"
           fill="none"
           strokeLinecap="round"
           initial={{ pathLength: 0 }}
@@ -124,7 +130,7 @@ const HighlightSection = ({
         <motion.path
           d="M100,600 Q350,450 650,600 T1150,600 T1900,600"
           stroke="url(#gradient3)"
-          strokeWidth="6"
+          strokeWidth="10"
           fill="none"
           strokeLinecap="round"
           initial={{ pathLength: 0 }}
@@ -135,29 +141,33 @@ const HighlightSection = ({
         />
         {/* Gradient definitions */}
         <defs>
-           <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stopColor="#ff6b6b" />
-      <stop offset="50%" stopColor="#4ecdc4" />
-      <stop offset="100%" stopColor="#45b7d1" />
-    </linearGradient>
-    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stopColor="#96ceb4" />
-      <stop offset="50%" stopColor="#feca57" />
-      <stop offset="100%" stopColor="#ff9ff3" />
-    </linearGradient>
-    <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stopColor="#a8e6cf" />
-      <stop offset="50%" stopColor="#ff8b94" />
-      <stop offset="100%" stopColor="#b4a7d6" />
-    </linearGradient>
+          <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#ff6b6b" />
+            <stop offset="50%" stopColor="#4ecdc4" />
+            <stop offset="100%" stopColor="#45b7d1" />
+          </linearGradient>
+          <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#96ceb4" />
+            <stop offset="50%" stopColor="#feca57" />
+            <stop offset="100%" stopColor="#ff9ff3" />
+          </linearGradient>
+          <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#a8e6cf" />
+            <stop offset="50%" stopColor="#ff8b94" />
+            <stop offset="100%" stopColor="#b4a7d6" />
+          </linearGradient>
         </defs>
       </svg>
       <div className="w-[10vw] h-screen flex items-center justify-center bg-black text-white relative">
         <div className="relative text-center max-w-4xl mx-auto px-4">
           {/* Background highlight that scales */}
           <motion.div
-            style={{ scaleX }}
-            className="absolute rounded-lg inset-0 bg-gradient-to-r from-red-500 to-blue-500 origin-left z-10"
+            style={{
+              scaleX,
+              background:
+                "linear-gradient(to right, #a8e6cf, #ff8b94, #b4a7d6)",
+            }}
+            className="absolute rounded-lg inset-0 origin-left z-10"
           />
 
           {/* Text with mix-blend-mode for color inversion */}
@@ -171,8 +181,8 @@ const HighlightSection = ({
           >
            {text}
           </p> */}
-          <div 
-          className="font-bold text-black-500 relative z-20 leading-tight uppercase flex justify-start"
+          <div
+            className="font-bold text-black-500 relative z-20 leading-tight uppercase flex items-center justify-start pb-[10px]"
             style={{
               marginLeft: isClient && window.innerWidth < 600 ? "30px" : "",
               fontSize: isClient && window.innerWidth < 600 ? "1.1em" : "4em",
@@ -180,30 +190,6 @@ const HighlightSection = ({
             }}
           >
             {text}
-
-           {/* <Shuffle
-            
-                        text={text}
-            
-                        shuffleDirection="right"
-            
-                        duration={1}
-            
-                        animationMode="random"
-            
-                        shuffleTimes={1}
-            
-                        ease="power3.out"
-            
-                        stagger={0.3}
-            
-                        threshold={0.9}
-              
-                       
-            
-                        respectReducedMotion={true}
-            
-                      /> */}
           </div>
         </div>
       </div>

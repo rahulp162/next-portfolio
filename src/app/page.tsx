@@ -2,6 +2,7 @@
 import HeroSection from "@/components/HeroSection";
 import IntroSection from "@/components/IntroSection";
 import ProjectsSection from "@/components/ProjectsSection";
+import ContactForm from "@/components/ContactForm";
 // import ProjectsSection from "@/components/ProjectsSection";
 
 import ScrollingCar from "@/components/ScrollingCar";
@@ -9,6 +10,9 @@ import ScrollLockSection from "@/components/ScrollLockSection";
 import StaggeredMenu from "@/components/Menu";
 import Dock from "@/components/Menu";
 import AnimatedList from "@/components/ScrollStack";
+import ImageReveal from "@/components/ImageReveal";
+import GooeyNav from "@/components/gooeyNav/GooeyNav";
+import { motion, AnimatePresence } from "framer-motion";
 // import ScrollStack, { ScrollStackItem } from "@/components/ScrollStack";
 
 export default function Home() {
@@ -39,22 +43,29 @@ export default function Home() {
   ];
 
   return (
-    <div className="relative overflow-x-clip">
-      {/* <div style={{ height: "100vh", background: "#1a1a1a" }}> */}
-      {/* <Dock
+    <AnimatePresence>
+      <motion.div
+        className="relative overflow-x-clip"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        {/* <div style={{ height: "100vh", background: "#1a1a1a" }}> */}
+        {/* <Dock
         items={dockItems}
         position="bottom"
         magnification={70}
         baseItemSize={50}
       /> */}
-      {/* </div> */}
-      <ScrollingCar />
+        {/* </div> */}
+        <ScrollingCar />
 
-      <HeroSection />
-      <IntroSection />
-      <ScrollLockSection />
-      {/* About Section */}
-      {/* <section className="min-h-screen flex items-center justify-center bg-gray-50">
+        <HeroSection />
+        <IntroSection />
+        <ScrollLockSection />
+        {/* About Section */}
+        {/* <section className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="max-w-4xl px-8 text-center">
           <h2 className="text-5xl font-bold mb-8 text-gray-800">About Me</h2>
           <p className="text-lg text-gray-600 mb-8">
@@ -84,11 +95,11 @@ export default function Home() {
         </div>
       </section> */}
 
-      {/* <div className=""> */}
+        {/* <div className=""> */}
 
-      {/* </div> */}
+        {/* </div> */}
 
-      {/* <AnimatedList
+        {/* <AnimatedList
         className="w-screen"
         // items={items}
         onItemSelect={(item, index) => console.log(item, index)}
@@ -96,10 +107,12 @@ export default function Home() {
         enableArrowNavigation={true}
         displayScrollbar={true}
       /> */}
-      <ProjectsSection />
+        <ProjectsSection />
+        <ContactForm />
+        {/* <ImageReveal /> */}
 
-      {/* Projects Section */}
-      {/* <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-900 to-teal-900 text-white">
+        {/* Projects Section */}
+        {/* <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-900 to-teal-900 text-white">
         <div className="max-w-6xl px-8">
           <h2 className="text-5xl font-bold mb-12 text-center">
             Featured Projects
@@ -152,6 +165,7 @@ export default function Home() {
           </div>
         </div>
       </section> */}
-    </div>
+      </motion.div>
+    </AnimatePresence>
   );
 }
