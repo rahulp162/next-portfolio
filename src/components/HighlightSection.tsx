@@ -11,10 +11,10 @@ const HighlightSection = ({
   const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
-    setWindowWidth(window.innerWidth);
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    setWindowWidth(window?.innerWidth);
+    const handleResize = () => setWindowWidth(window?.innerWidth);
+    window?.addEventListener("resize", handleResize);
+    return () => window?.removeEventListener("resize", handleResize);
   }, []);
 
   // Animate the highlight in the second half of the scroll

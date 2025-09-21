@@ -1,6 +1,10 @@
 "use client";
 import { motion } from "motion/react";
 import CurvedLoop from "./CurvedLoop";
+import SmoothCursor from "./SmoothCursor";
+import ScrollReveal from "./ScrollReveal";
+import ScrollFloat from "./ScrollReveal";
+import ScrollVelocity from "./ScrollVelocity";
 
 const IntroSection = () => {
   const name = "Rahul Panchal"; // Placeholder Name
@@ -10,7 +14,7 @@ const IntroSection = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-black text-white py-20">
-{/* <CurvedLoop
+      {/* <CurvedLoop
 
                 marqueeText="Be ✦ Creative ✦ With ✦ React ✦ Bits ✦"
 
@@ -26,21 +30,37 @@ const IntroSection = () => {
 
               /> */}
       <div className="max-w-4xl mx-auto px-8 text-center">
-              
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          viewport={{ once: true }}
+        <SmoothCursor
+          size={25}
+          // color="white"
+          showTrail={false}
+          magneticDistance={60}
+          magneticElements="[data-magnetic]"
+          springConfig={{
+            damping: 90,
+            stiffness: 450,
+            mass: 0.9,
+            restDelta: 0.001,
+          }}
+        />
+        <ScrollVelocity
+          texts={[
+            "React.js Next.js GSAP Framer ",
+            "Node.js Express.js MongoDB",
+            "TypeScript JavaScript",
+          ]}
+          // velocity={velocity}
+
+          className="custom-scroll-text w-[100vw]"
+        />
+        <ScrollReveal
+          baseOpacity={0}
+          enableBlur={true}
+          baseRotation={15}
+          blurStrength={10}
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-4">{name}</h2>
-          <p className="text-xl md:text-2xl text-green-400 font-semibold mb-8">
-            {role}
-          </p>
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-            {provision}
-          </p>
-        </motion.div>
+          So..... what I actually do with these technologies?
+        </ScrollReveal>
       </div>
     </section>
   );

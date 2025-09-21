@@ -1,7 +1,8 @@
 "use client";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import { useWindowSize } from "@/hooks/useWindowSize";
 
 // Rounded Falling Columns Animation for Hero Section
 const FallingColumnsAnimation = () => {
@@ -32,111 +33,111 @@ const FallingColumnsAnimation = () => {
 
   return (
     <div className="absolute inset-0 w-full h-[300vh] overflow-visible">
-  {/* Column 1 - Dark Background/Shadows */}
-  <div className="absolute left-0 top-0 w-[25vw] flex justify-center">
-    {/* Grid overlay for texture */}
-    <div
-      className="absolute inset-0 z-0 pointer-events-none"
-      style={{
-        backgroundImage: `
+      {/* Column 1 - Dark Background/Shadows */}
+      <div className="absolute left-0 top-0 w-[25vw] flex justify-center">
+        {/* Grid overlay for texture */}
+        <div
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            backgroundImage: `
           repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
           repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
           repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
           repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
         `,
-      }}
-    />
-    <motion.div
-      className="w-[20vw] rounded-[50px]"
-      style={{
-        height: column1Height,
-        background:
-          "linear-gradient(to bottom, #1D232C, rgba(29, 35, 44, 0.7), rgba(29, 35, 44, 0.9))",
-        borderTopLeftRadius: "100px",
-        borderTopRightRadius: "100px",
-        boxShadow: "0 0 20px rgba(29, 35, 44, 0.3)",
-      }}
-    />
-  </div>
+          }}
+        />
+        <motion.div
+          className="w-[20vw] rounded-[50px]"
+          style={{
+            height: column1Height,
+            background:
+              "linear-gradient(to bottom, #1D232C, rgba(29, 35, 44, 0.7), rgba(29, 35, 44, 0.9))",
+            borderTopLeftRadius: "100px",
+            borderTopRightRadius: "100px",
+            boxShadow: "0 0 20px rgba(29, 35, 44, 0.3)",
+          }}
+        />
+      </div>
 
-  {/* Column 2 - Warm Brown */}
-  <div className="absolute left-[25vw] top-0 w-[25vw] flex justify-center">
-    <div
-      className="absolute inset-0 z-0 pointer-events-none"
-      style={{
-        backgroundImage: `
+      {/* Column 2 - Warm Brown */}
+      <div className="absolute left-[25vw] top-0 w-[25vw] flex justify-center">
+        <div
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            backgroundImage: `
           repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
           repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
           repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
           repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
         `,
-      }}
-    />
-    <motion.div
-      className="w-[20vw] rounded-[50px]"
-      style={{
-        height: column2Height,
-        background:
-          "linear-gradient(to bottom, #6B442A, rgba(107, 68, 42, 0.7), rgba(107, 68, 42, 0.9))",
-        borderTopLeftRadius: "100px",
-        borderTopRightRadius: "100px",
-        boxShadow: "0 0 20px rgba(107, 68, 42, 0.3)",
-      }}
-    />
-  </div>
+          }}
+        />
+        <motion.div
+          className="w-[20vw] rounded-[50px]"
+          style={{
+            height: column2Height,
+            background:
+              "linear-gradient(to bottom, #6B442A, rgba(107, 68, 42, 0.7), rgba(107, 68, 42, 0.9))",
+            borderTopLeftRadius: "100px",
+            borderTopRightRadius: "100px",
+            boxShadow: "0 0 20px rgba(107, 68, 42, 0.3)",
+          }}
+        />
+      </div>
 
-  {/* Column 3 - Muted Green */}
-  <div className="absolute left-[50vw] top-0 w-[25vw] flex justify-center">
-    <div
-      className="absolute inset-0 z-0 pointer-events-none"
-      style={{
-        backgroundImage: `
+      {/* Column 3 - Muted Green */}
+      <div className="absolute left-[50vw] top-0 w-[25vw] flex justify-center">
+        <div
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            backgroundImage: `
           repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
           repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
           repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
           repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
         `,
-      }}
-    />
-    <motion.div
-      className="w-[20vw] rounded-[50px]"
-      style={{
-        height: column3Height,
-        background:
-          "linear-gradient(to bottom, #A5B67B, rgba(165, 182, 123, 0.7), rgba(165, 182, 123, 0.9))",
-        borderTopLeftRadius: "100px",
-        borderTopRightRadius: "100px",
-        boxShadow: "0 0 20px rgba(165, 182, 123, 0.3)",
-      }}
-    />
-  </div>
+          }}
+        />
+        <motion.div
+          className="w-[20vw] rounded-[50px]"
+          style={{
+            height: column3Height,
+            background:
+              "linear-gradient(to bottom, #A5B67B, rgba(165, 182, 123, 0.7), rgba(165, 182, 123, 0.9))",
+            borderTopLeftRadius: "100px",
+            borderTopRightRadius: "100px",
+            boxShadow: "0 0 20px rgba(165, 182, 123, 0.3)",
+          }}
+        />
+      </div>
 
-  {/* Column 4 - Orange/Yellow */}
-  <div className="absolute left-[75vw] top-0 w-[25vw] flex justify-center">
-    <div
-      className="absolute inset-0 z-0 pointer-events-none"
-      style={{
-        backgroundImage: `
+      {/* Column 4 - Orange/Yellow */}
+      <div className="absolute left-[75vw] top-0 w-[25vw] flex justify-center">
+        <div
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            backgroundImage: `
           repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
           repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
           repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
           repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
         `,
-      }}
-    />
-    <motion.div
-      className="w-[20vw] rounded-[50px]"
-      style={{
-        height: column4Height,
-        background:
-          "linear-gradient(to bottom, #D59B55, rgba(213, 155, 85, 0.7), rgba(213, 155, 85, 0.9))",
-        borderTopLeftRadius: "100px",
-        borderTopRightRadius: "100px",
-        boxShadow: "0 0 20px rgba(213, 155, 85, 0.3)",
-      }}
-    />
-  </div>
-</div>
+          }}
+        />
+        <motion.div
+          className="w-[20vw] rounded-[50px]"
+          style={{
+            height: column4Height,
+            background:
+              "linear-gradient(to bottom, #D59B55, rgba(213, 155, 85, 0.7), rgba(213, 155, 85, 0.9))",
+            borderTopLeftRadius: "100px",
+            borderTopRightRadius: "100px",
+            boxShadow: "0 0 20px rgba(213, 155, 85, 0.3)",
+          }}
+        />
+      </div>
+    </div>
   );
 };
 
@@ -183,16 +184,37 @@ export default function HeroSection() {
   useTransform(scrollYProgress, [0, 1], [1, 100]).onChange((v) =>
     letterSpacingRaw.set(v)
   );
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    // setIsClient(true);
+
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 600);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
     <section className="relative min-h-[310vh] bg-black text-white overflow-hidden">
-      
       {/* Simple Falling Columns Animation */}
       <FallingColumnsAnimation />
 
       <div className="w-full flex justify-center">
         <div className="hero-container absolute top-30 w-[70vw] h-[65vh] rounded-lg justify-center ">
-          <Image src="/hero.png" alt="my work space" fill style={{ objectFit:window?.innerWidth<600?"cover":"none",  objectPosition:"", borderRadius:"10px" }} />
+          <Image
+            src="/hero.png"
+            alt="my work space"
+            fill
+            style={{
+              objectFit: isMobile ? "cover" : "none",
+              objectPosition: "",
+              borderRadius: "10px",
+            }}
+          />
         </div>
       </div>
 
@@ -205,7 +227,7 @@ export default function HeroSection() {
           {/* Main heading with gradient */}
           <motion.h2
             className={`font-extrabold mb-4 ${
-              window.innerWidth < 600 ? "pt-[50vh]" : "pt-[180vh]"
+              isMobile ? "pt-[50vh]" : "pt-[180vh]"
             }`}
             style={{ letterSpacing: spacing2 }}
           >
@@ -258,7 +280,7 @@ export default function HeroSection() {
             A FULL STACK DEVELOPER
           </motion.h2> */}
           <motion.h2
-            className="mt-[0vh] transition-all duration-300 ease-out " 
+            className="mt-[0vh] transition-all duration-300 ease-out "
             style={{
               letterSpacing: spacing3,
               lineHeight: useTransform(scrollYProgress, [0, 1], [1.2, 2]),
@@ -274,9 +296,11 @@ export default function HeroSection() {
           >
             A FULL STACK DEVELOPER
           </motion.h2>
-          {/* {window.innerWidth < 600 && <div className="h-[60vh] "></div>} */}
+          {/* {window?.innerWidth < 600 && <div className="h-[60vh] "></div>} */}
           <motion.h1
-            className="text-3xl mt-[20vh] md:text-6xl lg:text-8xl font-extrabold mb-4 w-full text-center "
+            className={`text-3xl ${
+              isMobile ? "mt-[30vh]" : "mt-[80vh]"
+            } md:text-6xl lg:text-8xl font-extrabold mb-4 w-full text-center `}
             style={{
               // backgroundImage:
               //   "linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899)",
@@ -306,7 +330,7 @@ export default function HeroSection() {
           </motion.h2> */}
 
           {/* Short bio */}
-          {(() => {
+          {/* {(() => {
             // The sentence to animate
             const sentence =
               "I build modern web applications with cutting-edge technologies, focusing on performance, accessibility, and beautiful user experiences.";
@@ -385,7 +409,7 @@ export default function HeroSection() {
                 </p>
               </motion.div>
             );
-          })()}
+          })()} */}
 
           {/* Skills tags */}
           <Skills />

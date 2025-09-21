@@ -1,39 +1,37 @@
-'use client';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+"use client";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+// import ScrollStack, { ScrollStackItem } from "./ScrollStack";
+import AnimatedList from "./ScrollStack";
 
 export default function ProjectsSection() {
-  const targetRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ['start end', 'end start'],
-  });
-
-  const clipPath = useTransform(
-    scrollYProgress,
-    [0.2, 0.8],
-    ['inset(100% 0% 0% 0%)', 'inset(0% 0% 0% 0%)']
-  );
+  const items = [
+    "Item 1",
+    "Item 2",
+    "Item 3",
+    "Item 4",
+    "Item 5",
+    "Item 6",
+    "Item 7",
+    "Item 8",
+    "Item 9",
+    "Item 10",
+  ];
 
   return (
-    <section ref={targetRef} className="relative h-[150vh] bg-black">
-      <div className="sticky top-0 h-screen flex items-center justify-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('https://assets-global.website-files.com/659693a744f35a61957b2162/65a563b95c13325047a7c41c_SwiftGlow%20Gradients%20(1).webp')`,
-          }}
-        ></div>
-        <motion.div
-          className="absolute inset-0 bg-black"
-          style={{ clipPath }}
-        />
-        <h1
-          className="text-[20vw] leading-[0.8] font-extrabold text-center text-white"
-        >
-          PROJECTS
-        </h1>
-      </div>
-    </section>
+    // <section ref={targetRef} className="h-[150vh] bg-white">
+
+    // <AnimatedList
+    //   className="w-screen"
+    //   items={items}
+    //   onItemSelect={(item, index) => console.log(item, index)}
+    //   showGradients={true}
+    //   enableArrowNavigation={true}
+    //   displayScrollbar={true}
+    // />
+    <div className="h-screen bg-white text-black text-[100px] flex items-center justify-center w-full">
+      PROJECTS
+    </div>
+    // </section>
   );
 }

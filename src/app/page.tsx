@@ -1,20 +1,60 @@
+"use client";
 import HeroSection from "@/components/HeroSection";
 import IntroSection from "@/components/IntroSection";
 import ProjectsSection from "@/components/ProjectsSection";
-import ScrollLockSection from "@/components/ScrollLockSection";
+// import ProjectsSection from "@/components/ProjectsSection";
+
 import ScrollingCar from "@/components/ScrollingCar";
+import ScrollLockSection from "@/components/ScrollLockSection";
+import StaggeredMenu from "@/components/Menu";
+import Dock from "@/components/Menu";
+import AnimatedList from "@/components/ScrollStack";
+// import ScrollStack, { ScrollStackItem } from "@/components/ScrollStack";
 
 export default function Home() {
+  const dockItems = [
+    {
+      icon: <>Home</>,
+
+      label: "Home",
+
+      onClick: () => console.log("Home clicked"),
+    },
+
+    {
+      icon: <>srttings</>,
+
+      label: "Settings",
+
+      onClick: () => console.log("Settings clicked"),
+    },
+
+    {
+      icon: <>mail</>,
+
+      label: "Messages",
+
+      onClick: () => console.log("Messages clicked"),
+    },
+  ];
+
   return (
-    <div className="relative">
+    <div className="relative overflow-x-clip">
+      {/* <div style={{ height: "100vh", background: "#1a1a1a" }}> */}
+      {/* <Dock
+        items={dockItems}
+        position="bottom"
+        magnification={70}
+        baseItemSize={50}
+      /> */}
+      {/* </div> */}
       <ScrollingCar />
 
       <HeroSection />
       <IntroSection />
       <ScrollLockSection />
-
       {/* About Section */}
-      <section className="min-h-screen flex items-center justify-center bg-gray-50">
+      {/* <section className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="max-w-4xl px-8 text-center">
           <h2 className="text-5xl font-bold mb-8 text-gray-800">About Me</h2>
           <p className="text-lg text-gray-600 mb-8">
@@ -42,11 +82,24 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* <ProjectsSection/> */}
+      {/* <div className=""> */}
+
+      {/* </div> */}
+
+      {/* <AnimatedList
+        className="w-screen"
+        // items={items}
+        onItemSelect={(item, index) => console.log(item, index)}
+        showGradients={true}
+        enableArrowNavigation={true}
+        displayScrollbar={true}
+      /> */}
+      <ProjectsSection />
+
       {/* Projects Section */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-900 to-teal-900 text-white">
+      {/* <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-900 to-teal-900 text-white">
         <div className="max-w-6xl px-8">
           <h2 className="text-5xl font-bold mb-12 text-center">
             Featured Projects
@@ -98,7 +151,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

@@ -14,12 +14,15 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Full-Stack Developer Portfolio | React, Next.js, MERN Stack",
-  description: "Professional portfolio showcasing modern web development projects built with React, Next.js, and MERN stack. Specializing in scalable SaaS applications and e-commerce solutions.",
-  keywords: "Full-Stack Developer, React Developer, Next.js, MERN Stack, JavaScript, TypeScript, Web Development, SaaS, Portfolio",
+  description:
+    "Professional portfolio showcasing modern web development projects built with React, Next.js, and MERN stack. Specializing in scalable SaaS applications and e-commerce solutions.",
+  keywords:
+    "Full-Stack Developer, React Developer, Next.js, MERN Stack, JavaScript, TypeScript, Web Development, SaaS, Portfolio",
   authors: [{ name: "Your Name" }],
   openGraph: {
     title: "Full-Stack Developer Portfolio",
-    description: "Professional portfolio showcasing modern web development projects",
+    description:
+      "Professional portfolio showcasing modern web development projects",
     type: "website",
   },
 };
