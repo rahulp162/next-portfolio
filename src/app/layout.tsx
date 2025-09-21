@@ -18,9 +18,9 @@ export const metadata: Metadata = {
     "Professional portfolio showcasing modern web development projects built with React, Next.js, and MERN stack. Specializing in scalable SaaS applications and e-commerce solutions.",
   keywords:
     "Full-Stack Developer, React Developer, Next.js, MERN Stack, JavaScript, TypeScript, Web Development, SaaS, Portfolio",
-  authors: [{ name: "Your Name" }],
+  authors: [{ name: "Rahul Panchal" }],
   openGraph: {
-    title: "Full-Stack Developer Portfolio",
+    title: "Rahul Panchal | Portfolio",
     description:
       "Professional portfolio showcasing modern web development projects",
     type: "website",

@@ -73,8 +73,10 @@ const IntroSection = () => {
         )}
         <ScrollVelocity
           texts={[
-            "React.js Next.js GSAP Framer ",
-            "Node.js Express.js MongoDB",
+            `React.js Next.js Framer ${
+              window.innerWidth >= 600 ? "GSAP" : ""
+            } `,
+            `Node.js Express.js  ${window.innerWidth >= 600 ? "MongoDB" : ""}`,
             "TypeScript JavaScript",
           ]}
           // velocity={velocity}

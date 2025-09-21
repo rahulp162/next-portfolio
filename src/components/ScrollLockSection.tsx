@@ -52,10 +52,24 @@ const HighlightSection = ({
 }) => {
   // State to track if the component is running in the browser
   const [isClient, setIsClient] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     // This code runs only in the browser
     setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    // setIsClient(true);
+
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 600);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   // Animate the highlight in the second half of the scroll
@@ -182,8 +196,9 @@ const HighlightSection = ({
            {text}
           </p> */}
           <div
-            className="font-bold text-black-500 relative z-20 leading-tight uppercase flex items-center justify-start pb-[10px]"
+            className="font-bold text-black-500 relative z-20 leading-tight uppercase flex items-center justify-start "
             style={{
+              paddingBottom: isMobile ? "4px" : "10px",
               marginLeft: isClient && window.innerWidth < 600 ? "30px" : "",
               fontSize: isClient && window.innerWidth < 600 ? "1.1em" : "4em",
               width: isClient && window.innerWidth < 600 ? "54vw" : "200vw",

@@ -1,6 +1,9 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import type React from "react";
+
 import { useState } from "react";
+import { CheckCircle, XCircle, Send, Loader2 } from "lucide-react";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -60,12 +63,49 @@ export default function ContactForm() {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
           onSubmit={handleSubmit}
-          className="space-y-6"
+          className="space-y-6 text-black relative"
         >
+          <AnimatePresence>
+            {isSubmitting && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="absolute inset-0 bg-white/80 backdrop-blur-sm z-10 flex items-center justify-center rounded-lg"
+              >
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  className="flex flex-col items-center gap-4"
+                >
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{
+                      duration: 1,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "linear",
+                    }}
+                  >
+                    <Loader2 className="w-8 h-8 text-black" />
+                  </motion.div>
+                  <motion.p
+                    initial={{ y: 10, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className="text-black font-medium"
+                  >
+                    Sending your message...
+                  </motion.p>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           <div>
+            <p className="pb-2">Name</p>
             <input
               type="text"
-              placeholder="Your Name"
+              placeholder="Who is it for?"
               value={formData.name}
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
@@ -76,9 +116,10 @@ export default function ContactForm() {
           </div>
 
           <div>
+            <p className="pb-2">Email</p>
             <input
               type="email"
-              placeholder="Your Email"
+              placeholder="Where I can send a proposal"
               value={formData.email}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
@@ -89,8 +130,9 @@ export default function ContactForm() {
           </div>
 
           <div>
+            <p className="pb-2">Message</p>
             <textarea
-              placeholder="Your Message"
+              placeholder="Briefly describe your project, including the problem you're trying to solve and your key goals"
               value={formData.message}
               onChange={(e) =>
                 setFormData({ ...formData, message: e.target.value })
@@ -104,32 +146,119 @@ export default function ContactForm() {
           <motion.button
             type="submit"
             disabled={isSubmitting}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full bg-white text-black py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+            whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+            className="w-full bg-white text-black py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
-            {isSubmitting ? "Sending..." : "Send Message"}
+            <AnimatePresence mode="wait">
+              {isSubmitting ? (
+                <motion.div
+                  key="loading"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  className="flex items-center gap-2"
+                >
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{
+                      duration: 1,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "linear",
+                    }}
+                  >
+                    <Loader2 className="w-4 h-4" />
+                  </motion.div>
+                  Sending...
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="idle"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  className="flex items-center gap-2"
+                >
+                  <Send className="w-4 h-4" />
+                  Send Message
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.button>
 
-          {submitStatus === "success" && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-green-400 text-center"
-            >
-              Message sent successfully! I'll get back to you soon.
-            </motion.p>
-          )}
+          <AnimatePresence>
+            {submitStatus === "success" && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8, y: -20 }}
+                transition={{ type: "spring", duration: 0.6 }}
+                className="bg-green-50 border border-green-200 rounded-lg p-6 flex items-center gap-4"
+              >
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                >
+                  <CheckCircle className="w-8 h-8 text-green-600" />
+                </motion.div>
+                <div>
+                  <motion.h3
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="font-semibold text-green-800"
+                  >
+                    Message Sent! ✨
+                  </motion.h3>
+                  <motion.p
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="text-green-600 text-sm"
+                  >
+                    I'll get back to you soon
+                  </motion.p>
+                </div>
+              </motion.div>
+            )}
 
-          {submitStatus === "error" && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-red-400 text-center"
-            >
-              Failed to send message. Please try again.
-            </motion.p>
-          )}
+            {submitStatus === "error" && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8, y: -20 }}
+                transition={{ type: "spring", duration: 0.6 }}
+                className="bg-red-50 border border-red-200 rounded-lg p-6 flex items-center gap-4"
+              >
+                <motion.div
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                >
+                  <XCircle className="w-8 h-8 text-red-600" />
+                </motion.div>
+                <div>
+                  <motion.h3
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="font-semibold text-red-800"
+                  >
+                    Oops! Something went wrong
+                  </motion.h3>
+                  <motion.p
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="text-red-600 text-sm"
+                  >
+                    Please try again
+                  </motion.p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.form>
       </div>
     </section>
