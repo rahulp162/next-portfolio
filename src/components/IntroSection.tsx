@@ -5,7 +5,7 @@ import SmoothCursor from "./SmoothCursor";
 import ScrollReveal from "./ScrollReveal";
 import ScrollFloat from "./ScrollReveal";
 import ScrollVelocity from "./ScrollVelocity";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowBigLeft,
   ArrowBigLeftDash,
@@ -27,7 +27,19 @@ const IntroSection = () => {
   const role = "Jr. Software Developer";
   const provision =
     "I design and build beautiful, scalable, and user-friendly web applications from concept to completion.";
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    // setIsClient(true);
 
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 600);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
   return (
     <section className="min-h-screen flex items-center justify-center bg-black text-white py-20">
       {/* <CurvedLoop
@@ -73,10 +85,8 @@ const IntroSection = () => {
         )}
         <ScrollVelocity
           texts={[
-            `React.js Next.js Framer ${
-              window.innerWidth >= 600 ? "GSAP" : ""
-            } `,
-            `Node.js Express.js  ${window.innerWidth >= 600 ? "MongoDB" : ""}`,
+            `React.js Next.js Framer ${!isMobile ? "GSAP " : ""} `,
+            `Node.js Express.js  ${!isMobile ? "MongoDB" : ""}`,
             "TypeScript JavaScript",
           ]}
           // velocity={velocity}
