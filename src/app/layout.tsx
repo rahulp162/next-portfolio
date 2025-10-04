@@ -13,19 +13,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Full-Stack Developer Portfolio | React, Next.js, MERN Stack",
+  title: "Rahul Panchal | Portfolio",
   other: {
     "google-site-verification": "BUoneEo9olOEoAJEdbAlaeLzoXO5EUz5DOgz7Sc",
   },
+  // description:
+  //   "Professional portfolio showcasing modern web development projects built with React, Next.js, and MERN stack. Specializing in scalable SaaS applications and e-commerce solutions.",
   description:
-    "Professional portfolio showcasing modern web development projects built with React, Next.js, and MERN stack. Specializing in scalable SaaS applications and e-commerce solutions.",
+    "I am a full stack developer with a passion for building scalable and user-friendly web applications. I build websites and web applications using React, Next.js, and MERN stack. Contact me if you want to work with me.",
   keywords:
-    "Full-Stack Developer, React Developer, Next.js, MERN Stack, JavaScript, TypeScript, Web Development, SaaS, Portfolio",
+    "Full-Stack Developer, React Developer, Next.js, MERN Stack, JavaScript, TypeScript, Web Development, SaaS, Portfolio, Rahul Panchal",
   authors: [{ name: "Rahul Panchal" }],
   openGraph: {
     title: "Rahul Panchal | Portfolio",
     description:
-      "Professional portfolio showcasing modern web development projects",
+      "I am a full stack developer with a passion for building scalable and user-friendly web applications. I build websites and web applications using React, Next.js, and MERN stack. Contact me if you want to work with me.",
     type: "website",
   },
 };
