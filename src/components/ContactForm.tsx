@@ -133,7 +133,7 @@ export default function ContactForm() {
           <div>
             <p className="pb-2">Message</p>
             <textarea
-              placeholder="Briefly describe your project, including the problem you're trying to solve and your key goals"
+              placeholder="Briefly describe your project"
               value={formData.message}
               onChange={(e) =>
                 setFormData({ ...formData, message: e.target.value })

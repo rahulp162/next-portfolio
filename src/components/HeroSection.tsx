@@ -211,7 +211,10 @@ export default function HeroSection() {
     "FULL STACK DEVELOPER",
     "SOFTWARE DEVELOPER",
     "ENGINEER",
-    "GRAPHICS PROGRAMMER",
+    "REACT DEVELOPER",
+    "MEAN STACK DEVELOPER",
+    "FRONTEND DEVELOPER",
+    "BACKEND DEVELOPER",
   ];
 
   function AnimatedTitleLoop() {

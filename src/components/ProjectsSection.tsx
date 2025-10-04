@@ -12,7 +12,7 @@ interface IProject {
 
 export default function ProjectsSection() {
   const router = useRouter();
-  const [activeCategory, setActiveCategory] = useState("creative");
+  const [activeCategory, setActiveCategory] = useState("professional");
   const handleProjectClick = (project: IProject) => {
     router.push(project.href);
   };
