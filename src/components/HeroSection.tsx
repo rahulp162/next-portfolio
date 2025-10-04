@@ -1,8 +1,15 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import Image from "next/image";
 import { useWindowSize } from "@/hooks/useWindowSize";
+import DarkVeil from "./wail";
 
 // Rounded Falling Columns Animation for Hero Section
 const FallingColumnsAnimation = () => {
@@ -200,12 +207,64 @@ export default function HeroSection() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  return (
-    <section className="relative min-h-[310vh] bg-black text-white overflow-hidden">
-      {/* Simple Falling Columns Animation */}
-      <FallingColumnsAnimation />
+  const titles = [
+    "FULL STACK DEVELOPER",
+    "SOFTWARE DEVELOPER",
+    "ENGINEER",
+    "GRAPHICS PROGRAMMER",
+  ];
 
-      <div className="w-full flex justify-center">
+  function AnimatedTitleLoop() {
+    const [index, setIndex] = useState(0);
+
+    useEffect(() => {
+      const timeout = setTimeout(() => {
+        setIndex((prev) => (prev + 1) % titles.length);
+      }, 2000); // Change word every 2 seconds
+      return () => clearTimeout(timeout);
+    }, [index]);
+
+    return (
+      <span className="inline-block relative min-h-[1.5em]">
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={titles[index]}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -24 }}
+            transition={{
+              duration: 0.5,
+              ease: "easeInOut",
+            }}
+            className="block"
+            style={{
+              wordBreak: "break-word",
+              hyphens: "none",
+            }}
+          >
+            {titles[index]}
+          </motion.span>
+        </AnimatePresence>
+      </span>
+    );
+  }
+
+  return (
+    <section className="relative min-h-[110vh] bg-black text-white overflow-hidden">
+      {/* Simple Falling Columns Animation */}
+      {/* <FallingColumnsAnimation /> */}
+      <div
+        style={{
+          width: "100%",
+          height: "600px",
+          position: "absolute",
+          // background: "white",
+        }}
+      >
+        <DarkVeil />
+      </div>
+
+      {/* <div className="w-full flex justify-center">
         <div className="hero-container absolute top-30 w-[70vw] h-[65vh] rounded-lg justify-center ">
           <Image
             src="/hero.png"
@@ -218,7 +277,7 @@ export default function HeroSection() {
             }}
           />
         </div>
-      </div>
+      </div> */}
 
       {/* Content container - sticky to stay visible while scrolling */}
       <div className="sticky top-0 h-screen flex items-center justify-center">
@@ -227,79 +286,75 @@ export default function HeroSection() {
           style={{ scale, opacity, y }}
         >
           {/* Main heading with gradient */}
-          <motion.h2
+          {/* <h2
             className={`font-extrabold mb-4 ${
-              isMobile ? "pt-[50vh]" : "pt-[180vh]"
+              isMobile ? "pt-[50vh]" : "pt-[10vh]"
             }`}
-            style={{ letterSpacing: spacing2 }}
+            // style={{ letterSpacing: spacing2 }}
           >
             I AM
-          </motion.h2>
+          </h2> */}
           {/* <motion.div className="w-[80vw] h-[40vh] bg-red-500 mx-auto "></motion.div> */}
           {/* <div className="flex justify-start flex-row"> */}
-          <motion.h1
-            className="text-xl  m-0 md:text-8xl lg:text-9xl font-extrabold mb-4 "
-            style={{
-              // backgroundImage:
-              //   "linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899)",
-              // backgroundSize: "cover",
-              // backgroundClip: "text",
-              // WebkitBackgroundClip: "text",
-              // color: "transparent",
-              // backgroundColor: "white",
-              // backgroundBlendMode: "revert-layer",
-              letterSpacing: spacing,
-              // textShadow: "0 0 40px rgba(139, 92, 246, 0.3)",
-            }}
+          <h1
+            className="text-6xl  m-0 md:text-8xl lg:text-9xl font-extrabold mb-4 "
+            style={
+              {
+                // backgroundImage:
+                //   "linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899)",
+                // backgroundSize: "cover",
+                // backgroundClip: "text",
+                // WebkitBackgroundClip: "text",
+                // color: "transparent",
+                // backgroundColor: "white",
+                // backgroundBlendMode: "revert-layer",
+                // letterSpacing: spacing,
+                // textShadow: "0 0 40px rgba(139, 92, 246, 0.3)",
+              }
+            }
             // initial={{ opacity: 0, y: 20 }}
             // animate={{ opacity: 1, y: 1 }}
             // transition={{ duration: 0.8, ease: "easeInOut" }}
           >
             RAHUL
-          </motion.h1>
-          <motion.h1
-            className="text-xl m-0 md:text-8xl lg:text-9xl font-extrabold mb-4 "
-            style={{
-              // backgroundImage:
-              //   "linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899)",
-              // backgroundSize: "cover",
-              // backgroundClip: "text",
-              // WebkitBackgroundClip: "text",
-              // color: "transparent",
-              // backgroundColor: "white",
-              // backgroundBlendMode: "revert-layer",
-              letterSpacing: spacing,
-              // textShadow: "0 0 40px rgba(139, 92, 246, 0.3)",
-            }}
+          </h1>
+          <h1
+            className="text-6xl m-0 md:text-8xl lg:text-9xl font-extrabold mb-4 "
+            style={
+              {
+                // backgroundImage:
+                //   "linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899)",
+                // backgroundSize: "cover",
+                // backgroundClip: "text",
+                // WebkitBackgroundClip: "text",
+                // color: "transparent",
+                // backgroundColor: "white",
+                // backgroundBlendMode: "revert-layer",
+                // letterSpacing: spacing,
+                // textShadow: "0 0 40px rgba(139, 92, 246, 0.3)",
+              }
+            }
             // initial={{ opacity: 0, y: 20 }}
             // animate={{ opacity: 1, y: 1 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
+            // transition={{ duration: 0.8, ease: "easeInOut" }}
           >
             PANCHAL
-          </motion.h1>
+          </h1>
           {/* </div> */}
           {/* <motion.h2 className="mt-[0vh]" style={{ letterSpacing: spacing2 }}>
             A FULL STACK DEVELOPER
           </motion.h2> */}
-          <motion.h2
-            className="mt-[0vh] transition-all duration-300 ease-out "
+          <h2
+            className="mt-[0vh] transition-all duration-300 ease-out text-center"
             style={{
-              letterSpacing: spacing3,
-              lineHeight: useTransform(scrollYProgress, [0, 1], [1.2, 2]),
-              // width: "fit-content",
-              // maxWidth: "100vw",
               wordBreak: "break-word",
               hyphens: "none",
             }}
-            layout
-            transition={{
-              layout: { duration: 0.3, ease: "easeOut" },
-            }}
           >
-            A FULL STACK DEVELOPER
-          </motion.h2>
+            <AnimatedTitleLoop />
+          </h2>
           {/* {window?.innerWidth < 600 && <div className="h-[60vh] "></div>} */}
-          <motion.h1
+          {/* <h1
             className={`text-3xl ${
               isMobile ? "mt-[30vh]" : "mt-[80vh]"
             } md:text-6xl lg:text-8xl font-extrabold mb-4 w-full text-center `}
@@ -314,12 +369,12 @@ export default function HeroSection() {
               backgroundBlendMode: "revert-layer",
               // textShadow: "0 0 40px rgba(139, 92, 246, 0.3)",
             }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 1 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
+            // initial={{ opacity: 0, y: 20 }}
+            // animate={{ opacity: 1, y: 1 }}
+            // transition={{ duration: 0.8, ease: "easeInOut" }}
           >
             Engineer with a passion for creative web development
-          </motion.h1>
+          </h1> */}
 
           {/* Profession with typing animation
           <motion.h2
@@ -425,7 +480,7 @@ export default function HeroSection() {
           >
             <a
               href="#projects"
-              className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300"
+              className="px-8 py-3 bg-gradient-to-r from-green-600 to-green-900 rounded-full font-medium hover:shadow-lg hover:shadow-green-500/30 transition-all duration-300"
             >
               View Projects
             </a>

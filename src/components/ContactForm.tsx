@@ -58,6 +58,7 @@ export default function ContactForm() {
         </motion.div>
 
         <motion.form
+          id="contact"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -71,10 +72,10 @@ export default function ContactForm() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="absolute inset-0 bg-white/80 backdrop-blur-sm z-10 flex items-center justify-center rounded-lg"
+                className="absolute inset-0 h-full w-full bg-white/80 backdrop-blur-sm z-10 flex items-center justify-center rounded-lg"
               >
                 <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
+                  initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   className="flex flex-col items-center gap-4"
                 >
@@ -154,9 +155,9 @@ export default function ContactForm() {
               {isSubmitting ? (
                 <motion.div
                   key="loading"
-                  initial={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0, scale: 1 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
+                  exit={{ opacity: 0, scale: 1 }}
                   className="flex items-center gap-2"
                 >
                   <motion.div

@@ -84,10 +84,12 @@ export default function ProjectsSection() {
   return (
     <>
       <div className="max-h-[50vh] min-h-[20vh] bg-white text-black text-[10vw] flex flex-col items-center justify- w-full">
-        <p className="text-xs text-blue-900 w-[50%] flex justify-end items-center">
+        <p className="text-xs text-green-500 w-[50%] flex justify-end items-center">
           the cool stuff
         </p>
-        <div className="flex justify-start items-start pb-20">PROJECTS</div>
+        <div className="flex justify-start items-start pb-20" id="projects">
+          PROJECTS
+        </div>
       </div>
       <div className=" bg-white text-black flex flex-col items-center w-full px-8 mt-[-10px]">
         {/* Toggle Navigation */}

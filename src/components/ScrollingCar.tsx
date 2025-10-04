@@ -55,7 +55,7 @@ export default function ScrollProgressLine() {
           initial={{ pathLength: 0 }}
           style={{
             pathLength: progressWidth,
-            filter: "drop-shadow(0 0 8px rgba(147, 51, 234, 0.8))",
+            filter: "drop-shadow(0 10px 28px #71f1a1)",
           }}
         />
 

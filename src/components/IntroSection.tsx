@@ -83,7 +83,7 @@ const IntroSection = () => {
             }}
           />
         )}
-        <ScrollVelocity
+        {/* <ScrollVelocity
           texts={[
             `React.js Next.js Framer ${!isMobile ? "GSAP " : ""} `,
             `Node.js Express.js  ${!isMobile ? "MongoDB" : ""}`,
@@ -92,7 +92,7 @@ const IntroSection = () => {
           // velocity={velocity}
 
           className="custom-scroll-text w-[100vw]"
-        />
+        /> */}
         <ScrollReveal
           baseOpacity={0}
           enableBlur={true}

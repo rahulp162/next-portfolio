@@ -13,6 +13,7 @@ import AnimatedList from "@/components/ScrollStack";
 import ImageReveal from "@/components/ImageReveal";
 import GooeyNav from "@/components/gooeyNav/GooeyNav";
 import { motion, AnimatePresence } from "framer-motion";
+import { Github, Instagram, Linkedin } from "lucide-react";
 // import ScrollStack, { ScrollStackItem } from "@/components/ScrollStack";
 
 export default function Home() {
@@ -62,7 +63,7 @@ export default function Home() {
         <ScrollingCar />
 
         <HeroSection />
-        <IntroSection />
+        {/* <IntroSection /> */}
         <ScrollLockSection />
         {/* About Section */}
         {/* <section className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -109,6 +110,22 @@ export default function Home() {
       /> */}
         <ProjectsSection />
         <ContactForm />
+        <footer className="flex flex-col justify-center items-center bg-white text-black py-8">
+          <p className="text-sm">
+            © {new Date().getFullYear()} Rahul Panchal. All rights reserved.
+          </p>
+          <div className="flex gap-4 mt-4">
+            <a href="https://in.linkedin.com/in/rahul-panchal-05610824a">
+              <Linkedin size={20} />
+            </a>
+            <a href="https://github.com/rahulpanchal0106">
+              <Github size={20} />
+            </a>
+            <a href="https://www.instagram.com/rahulpanchal_._/">
+              <Instagram size={20} />
+            </a>
+          </div>
+        </footer>
         {/* <ImageReveal /> */}
 
         {/* Projects Section */}

@@ -15,7 +15,7 @@ const MissionText = () => {
   //   [0, 0.5], // Animate words in the first half of the scroll
   //   [0, words.length]
   // );
-  const scaleX = useTransform(scrollYProgress, [0.35, 0.6], [0, 2]);
+  const scaleX = useTransform(scrollYProgress, [0.1, 0.6], [0, 2]);
 
   return (
     <div className="max-w-5xl px-8 text-center">
@@ -73,17 +73,37 @@ const HighlightSection = ({
   }, []);
 
   // Animate the highlight in the second half of the scroll
-  const scaleX = useTransform(scrollYProgress, [0.1, 1], [0.1, 1.9]);
+  const scaleX = useTransform(scrollYProgress, [0, 1.2], [0, 1.7]);
 
   // Conditionally determine the text based on window width
-  const text = isClient
-    ? `I build ${
-        window.innerWidth < 600 ? "cool" : "Coooooooooooooooooool"
-      } stuff`
-    : "I build cool stuff"; // Fallback text for server-side rendering
+  // const text = isClient
+  //   ? `I build ${window.innerWidth < 600 ? "cool" : "Cool"} stuff`
+  //   : "I build cool stuff"; // Fallback text for server-side rendering
 
-  const wave1Progress = useTransform(scrollYProgress, [0.35, 2], [0, 2]);
-  const wave2Progress = useTransform(scrollYProgress, [0.35, 1.8], [0, 2]);
+  // Calculate total work experience dynamically from a given start date
+  const workStartDate = new Date("2021-06-01"); // YYYY-MM-DD format for reliability
+  const now = new Date();
+  // Calculate the difference in milliseconds
+  const diffMs = now.getTime() - workStartDate.getTime();
+  // Convert milliseconds to years, months, days
+  const diffDate = new Date(diffMs);
+  // Calculate years and months manually for accuracy
+  let years = now.getFullYear() - workStartDate.getFullYear();
+  let months = now.getMonth() - workStartDate.getMonth();
+  let days = now.getDate() - workStartDate.getDate();
+  if (days < 0) {
+    months -= 1;
+    // Get days in previous month
+    const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+    days += prevMonth.getDate();
+  }
+  if (months < 0) {
+    years -= 1;
+    months += 12;
+  }
+  const text = `Exploring tech for ${years} year${years !== 1 ? "s" : ""}, ${months} month${months !== 1 ? "s" : ""} & ${days} day${days !== 1 ? "s" : ""}`;
+  const wave1Progress = useTransform(scrollYProgress, [0, 5], [0, 1.6]);
+  const wave2Progress = useTransform(scrollYProgress, [0, 2.5], [0, 1.8]);
   const sparkleOpacity = useTransform(
     scrollYProgress,
     [0.6, 0.7, 0.8],
@@ -104,9 +124,9 @@ const HighlightSection = ({
           style={{ pointerEvents: "none", zIndex: 50 }}
         >
           <motion.path
-            d="M100,500 Q500,300 800,500 T1400,500 T1900,500"
-            stroke="url(#gradient2)"
-            strokeWidth="20"
+            d="M100,700 Q500,300 800,500 T1400,500 T1900,500"
+            stroke="#71f1a1"
+            strokeWidth="5"
             fill="none"
             strokeLinecap="round"
             initial={{ pathLength: 0 }}
@@ -114,7 +134,7 @@ const HighlightSection = ({
               pathLength: wave2Progress,
               strokeDasharray: wave2Progress, // New: Makes the dash equal to the path length
               strokeDashoffset: wave2Progress, // New: Initially offsets the dash to hide it
-              filter: "drop-shadow(0 0 15px rgba(255,255,255,0.6))",
+              // filter: "drop-shadow(0 0 15px rgb(255, 0, 0))",
             }}
           />
         </svg>
@@ -126,10 +146,10 @@ const HighlightSection = ({
         style={{ pointerEvents: "none", zIndex: 10 }}
       >
         {/* First wavy line - much larger scale */}
-        <motion.path
-          d="M100,400 Q400,200 700,400 T1300,400 T1900,400 T2500,400 T3100,400 T3700,400"
-          stroke="url(#gradient1)"
-          strokeWidth="42"
+        {/* <motion.path
+          d="M100,700 Q400,200 700,400 T1300,400 T1900,400 T2500,400 T3100,400 T3700,400"
+          stroke="#71f1a1"
+          strokeWidth="5"
           fill="none"
           strokeLinecap="round"
           initial={{ pathLength: 0 }}
@@ -138,13 +158,37 @@ const HighlightSection = ({
             filter: "drop-shadow(0 0 20px rgba(255,255,255,0.8))",
             zIndex: 50,
           }}
-        />
+        /> */}
 
         {/* Third wavy line for more dynamic effect */}
-        <motion.path
+        {/* <motion.path
           d="M100,600 Q350,450 650,600 T1150,600 T1900,600"
-          stroke="url(#gradient3)"
+          stroke="black"
           strokeWidth="10"
+          fill="none"
+          strokeLinecap="round"
+          initial={{ pathLength: 0 }}
+          style={{
+            pathLength: wave2Progress,
+            filter: "drop-shadow(0 0 12px rgba(255,255,255,0.4))",
+          }}
+        /> */}
+        <motion.path
+          d="M100,700 Q250,450 550,600 T1150,600 T1900,600 T2500,600 T3100,600 T3700,600"
+          stroke="#71f1a1"
+          strokeWidth="4"
+          fill="none"
+          strokeLinecap="round"
+          initial={{ pathLength: 0 }}
+          style={{
+            pathLength: wave2Progress,
+            filter: "drop-shadow(0 0 12px rgba(255,255,255,0.4))",
+          }}
+        />
+        <motion.path
+          d="M100,700 Q250,550 550,600 T1150,600 T1900,700 T1900,700"
+          stroke="#71f1a1"
+          strokeWidth="5"
           fill="none"
           strokeLinecap="round"
           initial={{ pathLength: 0 }}
@@ -155,15 +199,16 @@ const HighlightSection = ({
         />
         {/* Gradient definitions */}
         <defs>
+          {/* Lime green gradients for gradient1 and gradient2 */}
           <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#ff6b6b" />
-            <stop offset="50%" stopColor="#4ecdc4" />
-            <stop offset="100%" stopColor="#45b7d1" />
+            <stop offset="0%" stopColor="#bfff00" /> {/* light lime green */}
+            <stop offset="50%" stopColor="#32cd32" /> {/* lime green */}
+            <stop offset="100%" stopColor="#228B22" /> {/* forest green */}
           </linearGradient>
           <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#96ceb4" />
-            <stop offset="50%" stopColor="#feca57" />
-            <stop offset="100%" stopColor="#ff9ff3" />
+            <stop offset="0%" stopColor="#adff2f" /> {/* green yellow */}
+            <stop offset="50%" stopColor="#7CFC00" /> {/* lawn green */}
+            <stop offset="100%" stopColor="#32cd32" /> {/* lime green */}
           </linearGradient>
           <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#a8e6cf" />
@@ -178,8 +223,7 @@ const HighlightSection = ({
           <motion.div
             style={{
               scaleX,
-              background:
-                "linear-gradient(to right, #a8e6cf, #ff8b94, #b4a7d6)",
+              // background: "white",
             }}
             className="absolute rounded-lg inset-0 origin-left z-10"
           />
@@ -196,12 +240,12 @@ const HighlightSection = ({
            {text}
           </p> */}
           <div
-            className="font-bold text-black-500 relative z-20 leading-tight uppercase flex items-center justify-start "
+            className="font-bold text-black relative z-20 leading-tight uppercase flex items-center justify-start "
             style={{
               paddingBottom: isMobile ? "4px" : "10px",
               marginLeft: isClient && window.innerWidth < 600 ? "30px" : "",
-              fontSize: isClient && window.innerWidth < 600 ? "1.1em" : "4em",
-              width: isClient && window.innerWidth < 600 ? "54vw" : "200vw",
+              fontSize: isClient && window.innerWidth < 600 ? "2em" : "4em",
+              width: isClient && window.innerWidth < 600 ? "150vw" : "200vw",
             }}
           >
             {text}
