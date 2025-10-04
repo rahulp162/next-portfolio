@@ -14,6 +14,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Full-Stack Developer Portfolio | React, Next.js, MERN Stack",
+  other: {
+    "google-site-verification": "BUoneEo9olOEoAJEdbAlaeLzoXO5EUz5DOgz7Sc",
+  },
   description:
     "Professional portfolio showcasing modern web development projects built with React, Next.js, and MERN stack. Specializing in scalable SaaS applications and e-commerce solutions.",
   keywords:
